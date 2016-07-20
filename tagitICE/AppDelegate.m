@@ -2,11 +2,13 @@
 //  AppDelegate.m
 //  tagitICE
 //
-//  Created by rac on 15/06/16.
+//  Created by suhas on 15/06/16.
 //  Copyright © 2016 Sands Technologies. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
+#import <TSLAsciiCommands/TSLLibraryConfiguration.h>
 
 @interface AppDelegate ()
 
@@ -15,9 +17,69 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    
+    [TSLLibraryConfiguration sharedInstance].useUTF8 = YES;
+    
+    
+
+    
+    
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+
+    LoginViewController * lvc=[[LoginViewController alloc]init];
+    
+    NSString * udidstr= [[[UIDevice currentDevice] identifierForVendor] UUIDString]; // IOS 6+
+    
+    NSLog(@"%@",udidstr);
+    
+    udidstr=@"1BC73DA4-421F-423F-BE39-14D4617A3909";
+    
+    NSUserDefaults * defa=[NSUserDefaults standardUserDefaults];
+    
+    [defa setValue:udidstr forKey:@"UDID"];
+    
+    NSLog(@"%@",[defa valueForKey:@"UDID"]);
+    
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width, 20)];
+
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+    {
+        UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width, 20)];
+        view.backgroundColor=[UIColor blackColor];
+        [self.window.rootViewController.view addSubview:view];
+    }
+    
+    view.backgroundColor=[UIColor blackColor];
+    [self.window.rootViewController.view addSubview:view];
+
+    [self setStatusBarBackgroundColor:[UIColor blackColor]];
+    
+    UINavigationController * nav=[[UINavigationController alloc]initWithRootViewController:lvc];
+    
+    self.window.rootViewController=nav;
+    
+//    [NSThread sleepForTimeInterval:2.5];
+
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    [self.window makeKeyAndVisible];
+    
+    
     return YES;
+}
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

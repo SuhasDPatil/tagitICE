@@ -2,12 +2,13 @@
 //  AppDelegate.h
 //  tagitICE
 //
-//  Created by rac on 15/06/16.
+//  Created by suhas on 15/06/16.
 //  Copyright © 2016 Sands Technologies. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
