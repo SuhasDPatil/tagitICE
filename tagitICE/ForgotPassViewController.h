@@ -37,6 +37,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnSend;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *lblforgtPassTitl;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblnote;
+
+
 @property (nonatomic, strong) AFViewShaker * viewShaker;
 
 

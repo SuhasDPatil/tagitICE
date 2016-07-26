@@ -17,6 +17,7 @@
 #import "AFAppAPIClient.h"
 #import "AFViewShaker.h"
 #import "Constant.h"
+#import "utilees.h"
 
 #import "MBProgressHUD.h"
 
@@ -39,11 +40,18 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *btnForgotPassword;
 
+
+
+
+
+
+
 @property (nonatomic, strong) AFViewShaker * viewShaker;
 
 
 
 @property(nonatomic,strong)NSString * txtMac_Address;
+
 
 //GetParsed Data
 @property(nonatomic,strong)NSString *Client_Code;

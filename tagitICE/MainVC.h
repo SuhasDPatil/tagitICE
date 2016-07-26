@@ -11,5 +11,7 @@
 
 @interface MainVC : AMSlideMenuMainViewController
 
+@property(strong,nonatomic) TSLAsciiCommander * commander;
+
 
 @end

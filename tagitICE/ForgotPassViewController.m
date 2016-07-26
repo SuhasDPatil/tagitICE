@@ -20,8 +20,9 @@
     
 
     
-    [self setNavBar];
+  
     self.title=@"Forgot Password";
+      [self setNavBar];
     [[self.viewBorder1 layer] setBorderWidth:5.0f];
     [[self.viewBorder1 layer] setBorderColor:[UIColor clearColor].CGColor];
     [[self.viewBorder1 layer]setCornerRadius:4.5f];
@@ -60,6 +61,29 @@
     statusBarView.backgroundColor = [UIColor blackColor];
 
     self.navigationController.navigationBarHidden=NO;
+    
+    if([UIScreen mainScreen].bounds.size.width>=700)
+    {
+        _lblforgtPassTitl.font = [UIFont systemFontOfSize:25];
+        _lblnote.font=[UIFont systemFontOfSize:20];
+        [_txtUsername setFont:[UIFont systemFontOfSize:25]];
+        [_txtEmail setFont:[UIFont systemFontOfSize:25]];
+       _btnSend.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+       _btnCancel.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+        [self.navigationController.navigationBar setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width,90)];
+
+        }
+    else
+    {
+        
+        _lblforgtPassTitl.font = [UIFont systemFontOfSize:20];
+        _lblnote.font=[UIFont systemFontOfSize:12];
+        [_txtUsername setFont:[UIFont systemFontOfSize:16]];
+        [_txtEmail setFont:[UIFont systemFontOfSize:16]];
+        _btnSend.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        _btnCancel.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    }
+    
     
 }
 
@@ -126,11 +150,35 @@
 
 -(void)setNavBar
 {
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:203.0f/255.0f green:32.0f/255.0f blue:45.0f/255.0f alpha:1.0];
-    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
-    [self.navigationController.navigationBar
-     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    self.navigationController.navigationBar.translucent = NO;
+    
+    if([UIScreen mainScreen].bounds.size.width>=700)
+    {
+        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:203.0f/255.0f green:32.0f/255.0f blue:45.0f/255.0f alpha:1.0];
+        self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 400, 44)];
+        label.backgroundColor = [UIColor clearColor];
+        label.font = [UIFont boldSystemFontOfSize:30.0];
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        label.textAlignment = UITextAlignmentCenter;
+        label.textColor =[UIColor whiteColor];
+        label.text=self.title;
+        self.navigationItem.titleView = label;
+        
+        
+    }
+    else
+    {
+        
+        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:203.0f/255.0f green:32.0f/255.0f blue:45.0f/255.0f alpha:1.0];
+        self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+        [self.navigationController.navigationBar
+         setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+        self.navigationController.navigationBar.translucent = NO;
+        
+        
+        
+    }
+
     
     //Back Button
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];

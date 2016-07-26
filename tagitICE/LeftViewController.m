@@ -104,12 +104,12 @@
 {
     UINavigationController *nvc;
     UIViewController *rootVC;
+    
     switch (indexPath.row)
     {
         case 0:
         {
             NSLog(@"Stock Check Controller");
-            
             
             UIAlertController *alt=[UIAlertController alertControllerWithTitle:APP_NAME message:@"Coming Soon" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction* ok = [UIAlertAction
@@ -132,8 +132,8 @@
             NSLog(@"Consignment View Controller");
             rootVC=[[ConsignmentViewController alloc]initWithNibName:@"ConsignmentViewController" bundle:nil];
         }
-            
             break;
+            
         case 2:
         {
             NSLog(@"Search View Controller");
@@ -149,8 +149,8 @@
             break;
 
         default:
-            
             break;
+            
     }
     nvc=[[UINavigationController alloc]initWithRootViewController:rootVC];
     

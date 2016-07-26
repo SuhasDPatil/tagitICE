@@ -34,11 +34,13 @@
      *     Initializing menus
      *******************************/
     self.leftMenu = [[LeftViewController alloc] initWithNibName:@"LeftViewController" bundle:nil];
+    
     //    self.rightMenu = [[RightMenuTVC alloc] initWithNibName:@"RightMenuTVC" bundle:nil];
     /*******************************
      *     End Initializing menus
      *******************************/
     [self setStatusBarBackgroundColor:[UIColor blackColor]];
+    
     
     [super viewDidLoad];
     

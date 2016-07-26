@@ -101,8 +101,21 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_accessoryDidConnect:) name:EAAccessoryDidConnectNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_accessoryDidDisconnect:) name:EAAccessoryDidDisconnectNotification object:nil];
-
+    
+    if([UIScreen mainScreen].bounds.size.width>=700)
+    {
+      
+        _btnScan.titleLabel.font = [UIFont boldSystemFontOfSize:30 ];
+        [self.navigationController.navigationBar setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width,90)];
+    }
+    else
+    {
+        
+        _btnScan.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        
+    }
 }
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -263,6 +276,10 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Loading...";
+    [hud show:YES];
+
     if( _accessoryList.count > 0 )
     {
         _selectedRow = indexPath.row;
@@ -292,6 +309,10 @@
 
 -(void)initAndShowConnectedReader
 {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Loading...";
+    [hud show:YES];
+
     // Prepare and show the connected reader
     if( _commander.isConnected )
     {
@@ -326,14 +347,23 @@
               versionCommand.asciiProtocol,
               [NSString stringWithFormat:@"%d%%", batteryCommand.batteryLevel]);
         
-        
-//        MainVC * mvc=[[MainVC alloc]init];
-//        [self.navigationController pushViewController:mvc animated:YES];
-
+    
         ConsignmentViewController *cvc=[[ConsignmentViewController alloc]init];
         
         cvc.commander=_commander;
+        
         [self.navigationController pushViewController:cvc animated:YES];
+
+//        MainVC * mvc=[[MainVC alloc]init];
+//        
+//        mvc.commander=_commander;
+//        
+//        [self.navigationController pushViewController:mvc animated:YES];
+
+        
+        
+        
+//        [self.navigationController pushViewController:cvc animated:YES];
         
         // Ensure new information is visible
         //        [self.resultsTextView scrollRangeToVisible:NSMakeRange(self.resultsTextView.text.length - 1, 1)];
@@ -344,7 +374,7 @@
         //        [self.selectReaderButton setTitle:@"Tap to select reader..." forState:UIControlStateNormal];
         NSLog(@"Select Reader");
     }
-    
+    [hud hide:YES];
 }
 
 
@@ -352,8 +382,6 @@
 {
     return 65.0f;
 }
-
-
 
 
 
@@ -387,7 +415,6 @@
     // Update the 'select reader' button
     if( !_commander.isConnected )
     {
-
         NSLog(@"**********************************************");
     }
 }
@@ -404,12 +431,29 @@
     UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, -app.statusBarFrame.size.height, self.view.bounds.size.width, app.statusBarFrame.size.height)];
     statusBarView.backgroundColor = [UIColor blackColor];
 
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:203.0f/255.0f green:32.0f/255.0f blue:45.0f/255.0f alpha:1.0];
-    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
-    [self.navigationController.navigationBar
-     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    self.navigationController.navigationBar.translucent = NO;
-    
+    if([UIScreen mainScreen].bounds.size.width>=700)
+    {
+        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:203.0f/255.0f green:32.0f/255.0f blue:45.0f/255.0f alpha:1.0];
+        self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 400, 44)];
+        label.backgroundColor = [UIColor clearColor];
+        label.font = [UIFont boldSystemFontOfSize:30.0];
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        label.textAlignment = UITextAlignmentCenter;
+        label.textColor =[UIColor whiteColor];
+        label.text=self.title;
+        self.navigationItem.titleView = label;
+    }
+    else
+    {
+        
+        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:203.0f/255.0f green:32.0f/255.0f blue:45.0f/255.0f alpha:1.0];
+        self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+        [self.navigationController.navigationBar
+         setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+        self.navigationController.navigationBar.translucent = NO;
+        
+    }
     //Back Button
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *backBtnImage = [UIImage imageNamed:@"b"]  ;

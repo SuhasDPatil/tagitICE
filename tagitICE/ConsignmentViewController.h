@@ -16,14 +16,19 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "AFURLRequestSerialization.h"
 #import "MBProgressHUD.h"
+#import "CHCSVParser.h"
 
 #import "TSLSelectReaderProtocol.h"
 
 #import "Tags.h"
 
-@interface ConsignmentViewController : UIViewController<TSLInventoryCommandTransponderReceivedDelegate, TSLBarcodeCommandBarcodeReceivedDelegate, TSLSelectReaderProtocol>
+@interface ConsignmentViewController : UIViewController<TSLInventoryCommandTransponderReceivedDelegate, TSLBarcodeCommandBarcodeReceivedDelegate, TSLSelectReaderProtocol,MFMailComposeViewControllerDelegate>
 
-
+{
+    NSMutableArray * TagcountArray;
+    NSMutableDictionary * tagDict;
+    
+}
 @property (strong) NSManagedObject *existingTag;
 
 @property(strong,nonatomic) TSLAsciiCommander * commander;

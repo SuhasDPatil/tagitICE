@@ -132,6 +132,48 @@
 }
 
 
+#pragma mark User Defined Class methods for geetting CFUUID and save into keychain Access
+
++ (NSString *)GetDeviceID
+{
+    NSString *udidString;
+    udidString = [self objectForKey:@"deviceID"];
+    if(!udidString)
+    {
+        CFUUIDRef cfuuid = CFUUIDCreate(kCFAllocatorDefault);
+        udidString = (NSString*)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, cfuuid));
+        CFRelease(cfuuid);
+        [self setObject:udidString forKey:@"deviceID"];
+    }
+    return udidString;
+}
+
++(void) setObject:(NSString*) object forKey:(NSString*) key
+{
+    NSString *objectString = object;
+    NSError *error = nil;
+    [SFHFKeychainUtils storeUsername:key
+                         andPassword:objectString
+                      forServiceName:@"LIB"
+                      updateExisting:YES
+                               error:&error];
+    
+    if(error)
+        NSLog(@"%@", [error localizedDescription]);
+}
+
++(NSString*) objectForKey:(NSString*) key
+{
+    NSError *error = nil;
+    NSString *object = [SFHFKeychainUtils getPasswordForUsername:key
+                                                  andServiceName:@"LIB"
+                                                           error:&error];
+    if(error)
+        NSLog(@"%@", [error localizedDescription]);
+    
+    return object;
+}
+
 
 
 @end

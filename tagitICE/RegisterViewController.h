@@ -12,6 +12,8 @@
 #import "AFViewShaker.h"
 #import "utilees.h"
 
+#import "SFHFKeychainUtils.h"
+
 #import "AMSmoothAlertConstants.h"
 #import "AMSmoothAlertView.h"
 #import "MBProgressHUD.h"
@@ -21,6 +23,9 @@
     AMSmoothAlertView * alert;
     
 }
+
+@property(nonatomic,strong) NSString *macAddress;
+
 
 @property (strong, nonatomic) IBOutlet UIView *viewBorder1;
 

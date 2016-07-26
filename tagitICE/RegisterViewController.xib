@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController">
             <connections>
                 <outlet property="btnRegister" destination="61i-Rh-lou" id="niq-2L-VKc"/>
-                <outlet property="lblContNo" destination="XJf-yI-HPS" id="7QZ-8K-a0c"/>
                 <outlet property="txtClientName" destination="P53-sV-5JF" id="hsZ-kD-NK3"/>
                 <outlet property="txtContactNo" destination="p2g-sn-Pvq" id="TwG-9j-PZ7"/>
                 <outlet property="txtPassword" destination="dNB-F3-fQ6" id="kXm-EN-o1I"/>
@@ -69,7 +68,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" id="dNB-F3-fQ6">
-                            <rect key="frame" x="8" y="119" width="262" height="46"/>
+                            <rect key="frame" x="8" y="117" width="262" height="46"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -79,7 +78,7 @@
                             </connections>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wZm-hR-Jx6">
-                            <rect key="frame" x="0.0" y="168" width="278" height="1"/>
+                            <rect key="frame" x="0.0" y="166" width="278" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.61568627450000002" green="0.61568627450000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -87,7 +86,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" id="2d7-6B-An6">
-                            <rect key="frame" x="8" y="174" width="262" height="46"/>
+                            <rect key="frame" x="8" y="177" width="262" height="46"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -104,8 +103,8 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" id="p2g-sn-Pvq">
-                            <rect key="frame" x="61" y="228" width="209" height="47"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+971" placeholder="Mobile No" textAlignment="natural" minimumFontSize="17" id="p2g-sn-Pvq">
+                            <rect key="frame" x="8" y="230" width="262" height="46"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -114,13 +113,6 @@
                                 <outlet property="delegate" destination="-1" id="bl4-2q-X3C"/>
                             </connections>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+971 -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XJf-yI-HPS">
-                            <rect key="frame" x="8" y="228" width="53" height="47"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -146,7 +138,7 @@
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.792156862745098" green="0.792156862745098" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="378" y="315"/>
+            <point key="canvasLocation" x="378" y="316"/>
         </view>
     </objects>
     <resources>

@@ -19,6 +19,10 @@
     
     [super viewDidLoad];
     
+    _txtMac_Address=[utilees GetDeviceID];
+    
+    NSLog(@"%@",_txtMac_Address);
+    
     UIApplication *app = [UIApplication sharedApplication];
     
     UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, -app.statusBarFrame.size.height, self.view.bounds.size.width, app.statusBarFrame.size.height)];
@@ -56,6 +60,39 @@
 //    [self LoginWebService];
 
     self.navigationController.navigationBarHidden=YES;
+    
+    
+       if([UIScreen mainScreen].bounds.size.width>=700)
+        {
+  
+            [_txtUserName setFont:[UIFont systemFontOfSize:25]];
+            [_txtPassword setFont:[UIFont systemFontOfSize:25]];
+            
+           // _btnForgotPassword.titleLabel.font = [UIFont systemFontOfSize: 30];
+            _btnSignIn.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+            _btnSignUp.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+            _btnForgotPassword.titleLabel.font = [UIFont italicSystemFontOfSize:35 ];
+        }
+        else
+        {
+            
+            [_txtUserName setFont:[UIFont systemFontOfSize:16]];
+            [_txtPassword setFont:[UIFont systemFontOfSize:16]];
+            _btnSignIn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+            _btnSignUp.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+            _btnForgotPassword.titleLabel.font = [UIFont italicSystemFontOfSize:16 ];
+
+        }
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
 }
 
 
@@ -151,8 +188,6 @@
     NSString * Password=@"Password";
     NSString * Mac_Address=@"Mac_Address";
     
-    NSUserDefaults * def=[NSUserDefaults standardUserDefaults];
-    _txtMac_Address=[def valueForKey:@"UDID"];
     
     NSString *Stringdict=[NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"}",User_Name,_txtUserName.text,Password,_txtPassword.text,Mac_Address,_txtMac_Address];
     NSString * urlStr=[NSString stringWithFormat:@"%@%@",API_VALIDATE_CLIENT_LOGIN,Stringdict];

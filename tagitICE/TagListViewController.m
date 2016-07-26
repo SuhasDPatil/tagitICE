@@ -28,6 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Loading...";
+    [hud show:YES];
+
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:203.0f/255.0f green:32.0f/255.0f blue:45.0f/255.0f alpha:1.0];
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     [self.navigationController.navigationBar
@@ -55,6 +59,8 @@
 {
     [super viewDidAppear:animated];
     
+    [hud show:YES];
+
     // Fetch the devices from persistent data store
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     
@@ -64,6 +70,9 @@
     
     
     [self.collectionView reloadData];
+    
+    [hud hide:YES];
+
 }
 
 - (void)goback
@@ -89,6 +98,8 @@
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [hud show:YES];
+
     TagViewCell * cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
     NSManagedObject *tags = [self.tags objectAtIndex:indexPath.row];
@@ -99,6 +110,7 @@
     
     
     return cell;
+
 }
 
 /*

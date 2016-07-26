@@ -19,6 +19,11 @@
     [super viewDidLoad];
     
 
+    _macAddress = [utilees GetDeviceID];
+    
+    NSLog(@"%@",_macAddress);
+    
+    
     self.title=@"SIGN UP";
     
     [[self.viewBorder1 layer] setBorderWidth:5.0f];
@@ -35,15 +40,48 @@
     
 
     [self setStatusBarBackgroundColor:[UIColor blackColor]];
-    // Do any additional setup after loading the view from its nib.
+    }
+
+
+
+
+
+- (void)goback
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self setNavBar];
-    
-
+     [self setNavBar];
     self.navigationController.navigationBarHidden=NO;
+    
+    
+    if([UIScreen mainScreen].bounds.size.width>=700)
+    {
+        
+          [_txtUserName setFont:[UIFont systemFontOfSize:25]];
+          [_txtPassword setFont:[UIFont systemFontOfSize:25]];
+          [_txtClientName setFont:[UIFont systemFontOfSize:25]];
+          [_txtContactNo setFont:[UIFont systemFontOfSize:25]];
+          [_txxEmail setFont:[UIFont systemFontOfSize:25]];
+         _lblContNo.font = [UIFont systemFontOfSize:25];
+         _btnRegister.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+        [self.navigationController.navigationBar setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width,90)];
 
+        
+    }
+    else
+    {
+        
+        [_txtUserName setFont:[UIFont systemFontOfSize:16]];
+        [_txtPassword setFont:[UIFont systemFontOfSize:16]];
+        [_txtClientName setFont:[UIFont systemFontOfSize:16]];
+        [_txtContactNo setFont:[UIFont systemFontOfSize:16]];
+        [_txxEmail setFont:[UIFont systemFontOfSize:16]];
+        _lblContNo.font = [UIFont systemFontOfSize:16];
+         _btnRegister.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    }
 }
 
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
@@ -69,6 +107,50 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark User Defined
+
+
+-(void)setNavBar
+{
+    
+    
+    if([UIScreen mainScreen].bounds.size.width>=700)
+    {
+        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:203.0f/255.0f green:32.0f/255.0f blue:45.0f/255.0f alpha:1.0];
+        self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 400, 44)];
+        label.backgroundColor = [UIColor clearColor];
+        label.font = [UIFont boldSystemFontOfSize:30.0];
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        label.textAlignment = UITextAlignmentCenter;
+        label.textColor =[UIColor whiteColor];
+        label.text=self.title;
+        self.navigationItem.titleView = label;
+
+        
+    }
+    else
+    {
+        
+        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:203.0f/255.0f green:32.0f/255.0f blue:45.0f/255.0f alpha:1.0];
+        self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+        [self.navigationController.navigationBar
+         setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+        self.navigationController.navigationBar.translucent = NO;
+        
+
+ 
+    }
+    
+}
+
+
+
+
+
+
+
 
 - (IBAction)registerClicked:(id)sender
 {
@@ -139,29 +221,6 @@
 
 #pragma mark User Defined
 
--(void)setNavBar
-{
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:203.0f/255.0f green:32.0f/255.0f blue:45.0f/255.0f alpha:1.0];
-    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
-    [self.navigationController.navigationBar
-     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    self.navigationController.navigationBar.translucent = NO;
-    
-    //Back Button
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *backBtnImage = [UIImage imageNamed:@"back.png"]  ;
-    [backBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(goback) forControlEvents:UIControlEventTouchUpInside];
-    backBtn.frame = CGRectMake(0, 0, 10, 16);
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn] ;
-    self.navigationItem.leftBarButtonItem = backButton;
-    
-}
-
-- (void)goback
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 #pragma mark web-service
 -(void)checkValidUserWebservice
@@ -215,11 +274,8 @@
     MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Loading...";
 
-    NSUserDefaults *defa=[NSUserDefaults standardUserDefaults];
     
-    NSString *macAddress=[defa valueForKey:@"UDID"];
-    
-    NSString *Stringdict=[NSString stringWithFormat:@"{\"Client_Name\":\"%@\",\"Email\":\"%@\",\"Mac_Address\":\"%@\",\"Mobile_No\":\"%@\",\"Password\":\"%@\",\"User_Name\":\"%@\"}",_txtClientName.text,_txxEmail.text,macAddress,_txtContactNo.text,_txtPassword.text,_txtUserName.text];
+    NSString *Stringdict=[NSString stringWithFormat:@"{\"Client_Name\":\"%@\",\"Email\":\"%@\",\"Mac_Address\":\"%@\",\"Mobile_No\":\"%@\",\"Password\":\"%@\",\"User_Name\":\"%@\"}",_txtClientName.text,_txxEmail.text,_macAddress,_txtContactNo.text,_txtPassword.text,_txtUserName.text];
     
     
     NSString * urlStr=[NSString stringWithFormat:@"%@%@",API_REGISTER,Stringdict];

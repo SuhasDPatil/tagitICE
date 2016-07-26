@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "TagViewCell.h"
+#import "MBProgressHUD.h"
 
 #import "Tags.h"
 
 @interface TagListViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
-
+{
+    MBProgressHUD *hud;
+}
 @property (strong) NSMutableArray *tags;
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;

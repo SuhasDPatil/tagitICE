@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SFHFKeychainUtils.h"
 
 @interface utilees : NSObject
 
@@ -18,5 +19,10 @@
 + (BOOL) validEmail:(NSString*) emailString;
 - (NSTimeInterval) timeStamp;
 +(NSString * )getCurrentTime;
+
+
++ (NSString *)GetDeviceID;
++(void) setObject:(NSString*) object forKey:(NSString*) key;
++(NSString*) objectForKey:(NSString*) key;
 
 @end

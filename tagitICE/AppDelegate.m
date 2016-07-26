@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import <TSLAsciiCommands/TSLLibraryConfiguration.h>
+#import "ConsignmentViewController.h"
+
 
 @interface AppDelegate ()
 
@@ -23,27 +25,11 @@
     [TSLLibraryConfiguration sharedInstance].useUTF8 = YES;
     
     
-
-    
-    
     // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        
     
-
-    LoginViewController * lvc=[[LoginViewController alloc]init];
-    
-    NSString * udidstr= [[[UIDevice currentDevice] identifierForVendor] UUIDString]; // IOS 6+
-    
-    NSLog(@"%@",udidstr);
-    
-    udidstr=@"1BC73DA4-421F-423F-BE39-14D4617A3909";
-    
-    NSUserDefaults * defa=[NSUserDefaults standardUserDefaults];
-    
-    [defa setValue:udidstr forKey:@"UDID"];
-    
-    NSLog(@"%@",[defa valueForKey:@"UDID"]);
     
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width, 20)];
@@ -60,6 +46,8 @@
 
     [self setStatusBarBackgroundColor:[UIColor blackColor]];
     
+    LoginViewController * lvc=[[LoginViewController alloc]init];
+
     UINavigationController * nav=[[UINavigationController alloc]initWithRootViewController:lvc];
     
     self.window.rootViewController=nav;
@@ -185,5 +173,7 @@
         }
     }
 }
+
+
 
 @end

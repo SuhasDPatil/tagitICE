@@ -12,10 +12,15 @@
 #import "ConsignmentViewController.h"
 #import "Constant.h"
 
+#import "MainVC.h"
+
 @interface LeftViewController :AMSlideMenuLeftTableViewController
 
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property(strong,nonatomic) TSLAsciiCommander * commander;
+
+
+@property (strong, nonatomic) IBOutlet UITableView *tableViews;
 
 @property(strong,nonatomic)NSMutableArray *tabledata;
 @property(strong,nonatomic)NSMutableArray *leftimages;

@@ -28,6 +28,7 @@
 		19226CD81D37C33B00A25C3D /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 19226CD71D37C33B00A25C3D /* circle.png */; };
 		1925453C1D1C0AC0003276B7 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1925453B1D1C0AC0003276B7 /* CoreBluetooth.framework */; };
 		192D2E311D252FE3005CA7BD /* SplashScreen640-1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 192D2E301D252FE3005CA7BD /* SplashScreen640-1136.png */; };
+		195249071D4777F0005518DD /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 195249061D4777F0005518DD /* SFHFKeychainUtils.m */; };
 		195BA3A71D2E26A2007D9FB6 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 195BA3A61D2E26A2007D9FB6 /* menu_icon.png */; };
 		195BA3AE1D2E400B007D9FB6 /* TagListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 195BA3AC1D2E400B007D9FB6 /* TagListViewController.m */; };
 		195BA3AF1D2E400B007D9FB6 /* TagListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 195BA3AD1D2E400B007D9FB6 /* TagListViewController.xib */; };
@@ -84,6 +85,7 @@
 		19C21ED61D17D03A006DFCBA /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19C21ED41D17D03A006DFCBA /* LoginViewController.xib */; };
 		19C360291D34CEE600A4D647 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C360281D34CEE600A4D647 /* ExternalAccessory.framework */; };
 		19C3602B1D34CF3E00A4D647 /* TSLAsciiCommands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C3602A1D34CF3E00A4D647 /* TSLAsciiCommands.framework */; };
+		19E7A3871D3F5FB200F4BC26 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E7A3861D3F5FB200F4BC26 /* CHCSVParser.m */; };
 		98A291974200A0BAD199C3A1 /* libPods-tagitICE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2D377A3A8D0EE1323A03A5 /* libPods-tagitICE.a */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +128,8 @@
 		19226CD71D37C33B00A25C3D /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		1925453B1D1C0AC0003276B7 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		192D2E301D252FE3005CA7BD /* SplashScreen640-1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SplashScreen640-1136.png"; sourceTree = "<group>"; };
+		195249051D4777F0005518DD /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		195249061D4777F0005518DD /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		195BA3A61D2E26A2007D9FB6 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		195BA3AB1D2E400B007D9FB6 /* TagListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagListViewController.h; sourceTree = "<group>"; };
 		195BA3AC1D2E400B007D9FB6 /* TagListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagListViewController.m; sourceTree = "<group>"; };
@@ -200,7 +204,7 @@
 		197573E41D1978AB00A8B38A /* utilees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilees.h; sourceTree = "<group>"; };
 		197573E51D1978AB00A8B38A /* utilees.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utilees.m; sourceTree = "<group>"; };
 		1977877A1D17DA2000712042 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
-		1977877B1D17DA2000712042 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		1977877B1D17DA2000712042 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; tabWidth = 5; };
 		1977877C1D17DA2000712042 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		1977877F1D17F04800712042 /* ForgotPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPassViewController.h; sourceTree = "<group>"; };
 		197787801D17F04800712042 /* ForgotPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPassViewController.m; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 		19C21ED41D17D03A006DFCBA /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		19C360281D34CEE600A4D647 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		19C3602A1D34CF3E00A4D647 /* TSLAsciiCommands.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TSLAsciiCommands.framework; sourceTree = "<group>"; };
+		19E7A3851D3F5FB200F4BC26 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		19E7A3861D3F5FB200F4BC26 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		19EEDA1B1D3667EC00124866 /* TSLSelectReaderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSLSelectReaderProtocol.h; sourceTree = "<group>"; };
 		27CBF6BE9AA404F8D7B48492 /* Pods-tagitICE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tagitICE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tagitICE/Pods-tagitICE.debug.xcconfig"; sourceTree = "<group>"; };
 		48E533485EBC0A422DB7C3D4 /* Pods-tagitICE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tagitICE.release.xcconfig"; path = "Pods/Target Support Files/Pods-tagitICE/Pods-tagitICE.release.xcconfig"; sourceTree = "<group>"; };
@@ -473,6 +479,7 @@
 		1977878E1D18020100712042 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				19E7A3841D3F5F9B00F4BC26 /* CHCSVParser */,
 				19226CD71D37C33B00A25C3D /* circle.png */,
 				19B50D201D2AA1E5004C2C9B /* back.png */,
 				195BA3A61D2E26A2007D9FB6 /* menu_icon.png */,
@@ -488,6 +495,8 @@
 		1990FE1A1D3E39850010955D /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				195249051D4777F0005518DD /* SFHFKeychainUtils.h */,
+				195249061D4777F0005518DD /* SFHFKeychainUtils.m */,
 				197573231D1975B500A8B38A /* Constant.h */,
 				197573E41D1978AB00A8B38A /* utilees.h */,
 				197573E51D1978AB00A8B38A /* utilees.m */,
@@ -526,6 +535,15 @@
 				199751381D2FB0C5002C26F8 /* Stock Check */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		19E7A3841D3F5F9B00F4BC26 /* CHCSVParser */ = {
+			isa = PBXGroup;
+			children = (
+				19E7A3851D3F5FB200F4BC26 /* CHCSVParser.h */,
+				19E7A3861D3F5FB200F4BC26 /* CHCSVParser.m */,
+			);
+			name = CHCSVParser;
 			sourceTree = "<group>";
 		};
 		58145C17633E166A971457D2 /* Pods */ = {
@@ -583,6 +601,7 @@
 				TargetAttributes = {
 					19660D7E1D1194DB0062FA27 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = W9KH64PC2V;
 					};
 				};
 			};
@@ -699,6 +718,7 @@
 				190C92DD1D2D15C3008C3404 /* LeftViewController.m in Sources */,
 				197573E01D19787A00A8B38A /* UIImageView+AFNetworking.m in Sources */,
 				197573E31D19787A00A8B38A /* UIWebView+AFNetworking.m in Sources */,
+				195249071D4777F0005518DD /* SFHFKeychainUtils.m in Sources */,
 				1977877D1D17DA2000712042 /* RegisterViewController.m in Sources */,
 				190AFB1C1D1964DA00BC107D /* NSObject+SBJson.m in Sources */,
 				195BA3AE1D2E400B007D9FB6 /* TagListViewController.m in Sources */,
@@ -713,6 +733,7 @@
 				190AFB221D1964DA00BC107D /* SBJsonStreamWriter.m in Sources */,
 				197573DF1D19787A00A8B38A /* UIButton+AFNetworking.m in Sources */,
 				190AFB231D1964DA00BC107D /* SBJsonStreamWriterAccumulator.m in Sources */,
+				19E7A3871D3F5FB200F4BC26 /* CHCSVParser.m in Sources */,
 				197573C41D19786800A8B38A /* AFHTTPSessionManager.m in Sources */,
 				1967B0911D2BEA6500AC8C41 /* AMSlideMenuContentSegue.m in Sources */,
 				197787871D17F76900712042 /* BluetoothScanViewController.m in Sources */,
