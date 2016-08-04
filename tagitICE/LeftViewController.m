@@ -40,7 +40,7 @@
   //  self.tabledata = [@[@"Search",@"About Us",@"Invite Friends"] mutableCopy];
 
     
-    self.tabledata = [@[@"STOCK CHECK",@"CONSIGNMENT",@"SEARCH",@"SETTINGS"] mutableCopy];
+    self.tabledata = [@[@"CONSIGNMENT",@"SEARCH",@"STOCK TRANSFER",@"SETTINGS"] mutableCopy];
     
     
     [self.tableView registerNib:[UINib nibWithNibName:@"LeftMenuViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
@@ -107,44 +107,55 @@
     
     switch (indexPath.row)
     {
+//        case 0:
+//        {
+//            NSLog(@"Stock Check Controller");
+//            
+//            UIAlertController *alt=[UIAlertController alertControllerWithTitle:APP_NAME message:@"Coming Soon" preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction* ok = [UIAlertAction
+//                                 actionWithTitle:@"OK"
+//                                 style:UIAlertActionStyleDefault
+//                                 handler:^(UIAlertAction * action)
+//                                 {
+//                                     [alt dismissViewControllerAnimated:YES completion:nil];
+//                                     
+//                                 }];
+//            [alt addAction:ok];
+//            [self presentViewController:alt animated:YES completion:nil];
+//
+//            rootVC=[[StockCheckViewController alloc]initWithNibName:@"StockCheckViewController" bundle:nil];
+//        }
+//            break;
+
         case 0:
-        {
-            NSLog(@"Stock Check Controller");
-            
-            UIAlertController *alt=[UIAlertController alertControllerWithTitle:APP_NAME message:@"Coming Soon" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* ok = [UIAlertAction
-                                 actionWithTitle:@"OK"
-                                 style:UIAlertActionStyleDefault
-                                 handler:^(UIAlertAction * action)
-                                 {
-                                     [alt dismissViewControllerAnimated:YES completion:nil];
-                                     
-                                 }];
-            [alt addAction:ok];
-            [self presentViewController:alt animated:YES completion:nil];
-
-            rootVC=[[StockCheckViewController alloc]initWithNibName:@"StockCheckViewController" bundle:nil];
-        }
-            break;
-
-        case 1:
         {
             NSLog(@"Consignment View Controller");
             rootVC=[[ConsignmentViewController alloc]initWithNibName:@"ConsignmentViewController" bundle:nil];
+            
+        }
+            break;
+            
+        case 1:
+        {
+            NSLog(@"Search View Controller");
+            rootVC=[[SearchViewController alloc]initWithNibName:@"SearchViewController" bundle:nil];
         }
             break;
             
         case 2:
         {
-            NSLog(@"Search View Controller");
-            rootVC=[[ConsignmentViewController alloc]initWithNibName:@"ConsignmentViewController" bundle:nil];
+            NSLog(@"Stock Transferr");
+            rootVC=[[StockCheckViewController alloc]initWithNibName:@"StockCheckViewController" bundle:nil];
+            rootVC.title=@"Stock Transfer";
+
         }
             break;
-            
         case 3:
         {
             NSLog(@"Settings View Controller");
-            rootVC=[[ConsignmentViewController alloc]initWithNibName:@"ConsignmentViewController" bundle:nil];
+            rootVC=[[StockCheckViewController alloc]initWithNibName:@"StockCheckViewController" bundle:nil];
+            rootVC.title=@"Settings";
+
         }
             break;
 

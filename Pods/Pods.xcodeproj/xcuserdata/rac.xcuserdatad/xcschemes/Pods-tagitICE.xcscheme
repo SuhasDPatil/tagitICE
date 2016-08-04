@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '2D15BE57BF17DCEA0D6F5C922DAD2464'
+               BlueprintIdentifier = '50A464FA4AEC10C0269F526120639C75'
                BlueprintName = 'Pods-tagitICE'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-tagitICE.a'>

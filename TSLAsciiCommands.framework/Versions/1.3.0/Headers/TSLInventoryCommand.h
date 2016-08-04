@@ -22,6 +22,7 @@
 ///
 @protocol TSLInventoryCommandTransponderReceivedDelegate <NSObject>
 
+
 ///
 /// The transponder information received
 ///

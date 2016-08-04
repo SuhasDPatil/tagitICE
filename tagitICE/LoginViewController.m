@@ -226,6 +226,9 @@
             [alt addAction:ok];
             
             [self presentViewController:alt animated:YES completion:nil];
+            
+
+            
         }
         else if (_User_Name==(id)[NSNull null] || _User_Name==(id)[NSNull null] || _User_Name==(id)[NSNull null])
         {
@@ -280,22 +283,10 @@
         else
         {
             
+            BluetoothScanViewController *bsvc=[[BluetoothScanViewController alloc]init];
+            [self.navigationController pushViewController:bsvc animated:YES];
+
             
-            alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:APP_NAME andText:@"You've Successfully logged In !" andCancelButton:NO forAlertType:AlertSuccess];
-            [alert.defaultButton setTitle:@"Okay" forState:UIControlStateNormal];
-            alert.completionBlock = ^void (AMSmoothAlertView *alertObj, UIButton *button) {
-                if(button == alertObj.defaultButton) {
-                    NSLog(@"Default");
-                    BluetoothScanViewController *bsvc=[[BluetoothScanViewController alloc]init];
-                    [self.navigationController pushViewController:bsvc animated:YES];
-
-                } else {
-                    NSLog(@"Others");
-                }
-            };
-
-            alert.cornerRadius = 3.0f;
-            [alert show];
 
         }
         

@@ -34,10 +34,15 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Toast.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2D15BE57BF17DCEA0D6F5C922DAD2464</key>
+		<key>11697EE83B0D4FC45A96E2E914EC76AF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -48,6 +53,11 @@
 			<true/>
 		</dict>
 		<key>499E02707080D83C86D4029D60C38866</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>50A464FA4AEC10C0269F526120639C75</key>
 		<dict>
 			<key>primary</key>
 			<true/>

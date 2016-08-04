@@ -25,7 +25,6 @@
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationController.navigationBar.translucent = NO;
     
-    self.title=@"Stock Check";
 
     
 //    UIAlertController *alt=[UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@\nStock Check",APP_NAME] message:@"Coming Soon..." preferredStyle:UIAlertControllerStyleAlert];

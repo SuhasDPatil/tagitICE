@@ -19,10 +19,16 @@
 #import <TSLAsciiCommands/TSLAsciiCommands.h>
 
 
+
+#import "AMSmoothAlertView.h"
 #import "TSLSelectReaderProtocol.h"
 
 
 @interface BluetoothScanViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+{
+    AMSmoothAlertView * alert;
+    
+}
 
 
 

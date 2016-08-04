@@ -14,11 +14,13 @@
     
     EAAccessory *_currentAccessory;
 
-    TSLInventoryCommand *_inventoryResponder;
+    CommoninventoryCommand *_inventoryResponder;
 //    TSLBarcodeCommand *_barcodeResponder;
     
+    SelectReaderInfo * _commander;
     int _transpondersSeen;
     NSString *_partialResultMessage;
+    BOOL processing;
 
 }
 @end
@@ -42,69 +44,62 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [self removeAllPreviousScannedTag];
+    processing=NO;
+
+    [self setProcess:NO];
     
-    
-    
-    NSLog(@"%@",_commander);
+    processing=[self isProcessed];
     
 
-    TagcountArray=[[NSMutableArray alloc]init];
-    tagDict=[[NSMutableDictionary alloc]init];
-    
-    [self setStatusBarBackgroundColor:[UIColor blackColor]];
-    
     self.title=@"Consignment";
     [self setNavBar];
     
+    TagcountArray=[[NSMutableArray alloc]init];
+    tagDict=[[NSMutableDictionary alloc]init];
     
+    _commander=[SelectReaderInfo sharedInstance];
+    
+    [self setStatusBarBackgroundColor:[UIColor blackColor]];
 
-    if ([_btnTagCount.titleLabel.text isEqualToString:@"0"])
-    {
-        _btnSend.userInteractionEnabled = NO;
-        _btnTagCount.userInteractionEnabled=NO;
-    }
-    else
-    {
-        _btnSend.userInteractionEnabled = YES;
-        _btnTagCount.userInteractionEnabled=YES;
-    }
-    _inventoryResponder = [[TSLInventoryCommand alloc] init];    // Create a TSLInventoryCommand
-    
+    _inventoryResponder = [CommoninventoryCommand sharedInstance] ;    // Create a TSLInventoryCommand
     _inventoryResponder.transponderReceivedDelegate = self;    // Add self as the transponder delegate
-
+    
     _inventoryResponder.captureNonLibraryResponses = YES;
     
+    _inventoryResponder.includeTransponderRSSI=TSL_TriState_NO;
     
     _inventoryResponder.responseBeganBlock = ^
     {
         dispatch_async(dispatch_get_main_queue(),^
                        {
-
                        });
     };
     _inventoryResponder.responseEndedBlock = ^
     {
         dispatch_async(dispatch_get_main_queue(),^
                        {
-                       
                        });
     };
     
     [_commander addResponder:_inventoryResponder];    // Add the inventory responder to the commander's responder chain
     
     _transpondersSeen = 0;    // No transponders seen yet
-
+    
     _partialResultMessage = @"";
     
-    //Check For Inventory
-    if( _commander.isConnected )
-    {
-        TSLInventoryCommand *invCommand = [[TSLInventoryCommand alloc] init];        // Use the TSLInventoryCommand
-        
-        invCommand.includeTransponderRSSI = TSL_TriState_NO;
-        
-        [_commander executeCommand:invCommand];
-    }
+//    Check For Inventory
+//    if( _commander.isConnected )
+//    {
+//        TSLInventoryCommand *invCommand = [[TSLInventoryCommand alloc] init]; // Use the TSLInventoryCommand
+//
+//        invCommand.includeTransponderRSSI = TSL_TriState_NO;
+//
+//        [_commander executeCommand:invCommand];
+//    }
+    [_btnTagCount setTitle:@"0" forState:UIControlStateNormal];
+    
 }
 
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
@@ -121,6 +116,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commanderChangedState) name:TSLCommanderStateChangedNotification object:_commander];
+    
+    _inventoryResponder.transponderReceivedDelegate = self;    // Add self as the transponder delegate
+    
+    _inventoryResponder.captureNonLibraryResponses = YES;
+
     
     if([UIScreen mainScreen].bounds.size.width>=700)
     {
@@ -182,19 +182,23 @@
     // Append the transponder EPC identifier and RSSI to the results
     _partialResultMessage = [_partialResultMessage stringByAppendingFormat:@"EPC_ID : %-28s  RSSI : %4d\n", [epc UTF8String], [rssi intValue]];
     
+    processing=NO;
+
     NSString *str=[NSString stringWithFormat:@"%-28s",[epc UTF8String]];
-    NSLog(@"Particular Message: %@",_partialResultMessage);
     
+    NSData *epcdata=[TSLBinaryEncoding dataFromAsciiString:epc];
+    NSString * epcfinal=[TSLBinaryEncoding asciiStringFromData:epcdata];
     
-    
-    [tagDict setObject:str forKey:@"srNumber"];
+    [tagDict setObject:epcfinal forKey:@"srNumber"];
     [tagDict setObject:@"1" forKey:@"quantity"];
     
     [TagcountArray addObject:[tagDict valueForKey:@"srNumber"]];
-
-    _btnProcess.userInteractionEnabled=YES;
     
-    NSLog(@"%@",TagcountArray);
+    _array=[TagcountArray copy];
+    
+    NSSet *mySet = [NSSet setWithArray:_array];
+    
+    _array = [mySet allObjects];
     
     if( fastId != nil)
     {
@@ -208,10 +212,11 @@
         _partialResultMessage = [_partialResultMessage stringByAppendingFormat:@"\nTransponders seen: %4d\n\n", _transpondersSeen];
     }
     
-    [_btnTagCount setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)[TagcountArray count]] forState:UIControlStateNormal];
+    [_btnTagCount setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)[_array count]] forState:UIControlStateNormal];
 
-    NSLog(@"Updated Particular Message: %@",_partialResultMessage);
+//    NSLog(@"Updated Particular Message: %@",_partialResultMessage);
 }
+
 
 #pragma mark User Defined methods
 
@@ -239,42 +244,57 @@
         self.navigationController.navigationBar.translucent = NO;
     }
     
-    //Back Button
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *backBtnImage = [UIImage imageNamed:@"back.png"]  ;
-    [backBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
-    //    [backBtn addTarget:self action:@selector(goback) forControlEvents:UIControlEventTouchUpInside];
-    backBtn.frame = CGRectMake(0, 0, 0, 0);
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn] ;
-    self.navigationItem.leftBarButtonItem = backButton;
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark Button CLick methods
 
 - (IBAction)clearClicked:(id)sender
 {
+    
+    UIAlertController *alt=[UIAlertController alertControllerWithTitle:APP_NAME message:@"Confirm Clear !" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* no = [UIAlertAction
+                         actionWithTitle:@"No"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alt dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    
+    UIAlertAction* yes = [UIAlertAction
+                         actionWithTitle:@"Yes"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [self removeAllPreviousScannedTag];
+                             processing=NO;
+                         }];
+
+    [alt addAction:no];
+    [alt addAction:yes];
+
+    [self presentViewController:alt animated:YES completion:nil];
+}
+
+-(void)removeAllPreviousScannedTag
+{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Loading...";
     [hud show:YES];
-
-    _btnSend.userInteractionEnabled=NO;
-    _btnProcess.userInteractionEnabled=NO;
-    _btnTagCount.userInteractionEnabled=NO;
     
-//    [_btnTagCount setTitle:@"0" forState:UIControlStateNormal];
+    
+    _array=nil;
+    [TagcountArray removeAllObjects];
+    
+    NSLog(@"%ld",(long)[_array count]);
+    
+    
+    //    [_btnTagCount setTitle:@"0" forState:UIControlStateNormal];
     NSManagedObjectContext *context = [self managedObjectContext];
-
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tags" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
@@ -290,69 +310,117 @@
         NSLog(@"Error deleting %@ - error:%@",@"Tags",error);
     }
     [hud hide:YES];
-    
-    [_btnTagCount setTitle:@"0" forState:UIControlStateNormal];
-}
+    [_btnTagCount setTitle:[NSString stringWithFormat:@"%ld",[_array count]] forState:UIControlStateNormal];
 
+}
 - (IBAction)processClicked:(id)sender
 {
-    _btnProcess.userInteractionEnabled=NO;
+//    _btnProcess.userInteractionEnabled=NO;
     
     if ([_btnTagCount.titleLabel.text isEqualToString:@"0"])
     {
     }
     else
     {
-        _btnSend.userInteractionEnabled = YES;
-        _btnTagCount.userInteractionEnabled=YES;
         
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"Loading...";
         [hud show:YES];
         
-        //Save to Core Data
-        NSManagedObjectContext *context = [self managedObjectContext];
-        // Create a new managed object
-       
-        for (int i=0; i<[TagcountArray count]; i++)
-        {
-            Tags *newtag = [NSEntityDescription insertNewObjectForEntityForName:@"Tags" inManagedObjectContext:context];
-            [newtag setValue:[TagcountArray objectAtIndex:i] forKey:@"srNumber"];
-            [newtag setValue:@"1" forKey:@"quantity"];
-        }
+        [self checkForDuplicates];
+        processing=YES;
         
-        NSError *error = nil;
-        // Save the object to persistent store
-        if (![context save:&error])
-        {
-            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
-        }
-        
-        [_btnTagCount setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)[TagcountArray count]] forState:UIControlStateNormal];
         
         [hud hide:YES];
 
     }
 }
 
+
+-(void)checkForDuplicates
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tags"
+                                              inManagedObjectContext:context];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"srNumber"
+                                                                   ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    [request setSortDescriptors:sortDescriptors];
+    
+    NSError *Fetcherror;
+    NSMutableArray *mutableFetchResults = [[context
+                                            executeFetchRequest:request error:&Fetcherror] mutableCopy];
+    
+    if (!mutableFetchResults) {
+        // error handling code.
+    }
+    
+    for (int i=0; i<[_array count]; i++)
+    {
+
+        if ([[mutableFetchResults valueForKey:@"srNumber"]
+             containsObject:[_array objectAtIndex:i]]) {
+            NSLog(@"Duplicate Found");
+            
+        }
+        else
+        {
+            //write your code to add data
+            Tags *newtag = [NSEntityDescription insertNewObjectForEntityForName:@"Tags" inManagedObjectContext:context];
+            [newtag setValue:[_array objectAtIndex:i] forKey:@"srNumber"];
+            [newtag setValue:@"1" forKey:@"quantity"];
+        }
+    }
+    
+    NSError *error = nil;
+    // Save the object to persistent store
+    if (![context save:&error])
+    {
+        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+    }
+    
+    [_btnTagCount setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)[_array count]] forState:UIControlStateNormal];
+}
+
 - (IBAction)sendClicked:(id)sender
 {
-    
-    if ([_btnTagCount.titleLabel.text isEqualToString:@"0"])
+    if ([_btnTagCount.titleLabel.text isEqualToString:@"0"] ||  processing==NO)
     {
-        
+        // Make toast with a title
+        [self.navigationController.view makeToast:@"Pease Process data to send tags!"
+                                         duration:2.2
+                                         position:CSToastPositionBottom
+                                            title:nil
+                                            image:nil
+                                            style:nil
+                                       completion:nil];
+
     }
     else
     {
-        _btnProcess.userInteractionEnabled = NO;
         [self createCSV];
+
     }
 }
 
 - (IBAction)tagCountClicked:(id)sender
 {
-    if ([_btnTagCount.titleLabel.text isEqualToString:@"0"])
+    if ([_btnTagCount.titleLabel.text isEqualToString:@"0"] ||  processing==NO)
     {
+        // Make toast with a title
+        [self.navigationController.view makeToast:@"Pease Process data to view tags!"
+                                         duration:2.2
+                                         position:CSToastPositionBottom
+                                            title:nil
+                                            image:nil
+                                            style:nil
+                                       completion:nil];
         
     }
     else
@@ -381,6 +449,8 @@
     }
     else
     {
+        [results addObject:[NSString stringWithFormat:@"%@ ,%@",@"Serial No",@"Qty"]];
+        
         for (Tags *tagitem in tagItems)
         {
             [results addObject:[NSString stringWithFormat:@"%@ ,%@ ", tagitem.srNumber,tagitem.quantity]];
@@ -394,19 +464,24 @@
         MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
         mailComposer.mailComposeDelegate = self;
         NSData *myData = [resultString dataUsingEncoding:NSUTF8StringEncoding];
+        //Set Subject
+        [mailComposer setSubject:@"Consignment Report"];
         // Fill out the email body text
         NSString *emailBody = @"Hi,\n\nPlease find the Consignment Summary Report.\n\n";
-        [mailComposer setSubject:@"Tagit | Consignment Report"];
         [mailComposer setMessageBody:emailBody isHTML:NO];
+        
+        //set attachment
         NSDateFormatter *formatter;
         NSString        *dateString;
         formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
+        [formatter setDateFormat:@"dd_MM_yyyy_HH:mm:ss"];
         dateString = [formatter stringFromDate:[NSDate date]];
         NSLog(@"%@",dateString);
         NSString *strFileNameDateTime=[NSString stringWithFormat:@"Consignment_report_%@.csv",dateString];
         [mailComposer addAttachmentData:myData mimeType:@"text/cvs" fileName:strFileNameDateTime];
+        
         [self presentViewController:mailComposer animated:YES completion:NULL];
+        
     }
 }
 

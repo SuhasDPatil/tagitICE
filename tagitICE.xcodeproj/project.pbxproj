@@ -66,6 +66,9 @@
 		197573E21D19787A00A8B38A /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 197573D91D19787A00A8B38A /* UIRefreshControl+AFNetworking.m */; };
 		197573E31D19787A00A8B38A /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 197573DB1D19787A00A8B38A /* UIWebView+AFNetworking.m */; };
 		197573E61D1978AB00A8B38A /* utilees.m in Sources */ = {isa = PBXBuildFile; fileRef = 197573E51D1978AB00A8B38A /* utilees.m */; };
+		197675981D51C3B50029E98E /* CommoninventoryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 197675971D51C3B50029E98E /* CommoninventoryCommand.m */; };
+		1976759C1D51DD160029E98E /* SearchTagViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1976759A1D51DD160029E98E /* SearchTagViewCell.m */; };
+		1976759D1D51DD160029E98E /* SearchTagViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1976759B1D51DD160029E98E /* SearchTagViewCell.xib */; };
 		1977877D1D17DA2000712042 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1977877B1D17DA2000712042 /* RegisterViewController.m */; };
 		1977877E1D17DA2000712042 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1977877C1D17DA2000712042 /* RegisterViewController.xib */; };
 		197787821D17F04800712042 /* ForgotPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 197787801D17F04800712042 /* ForgotPassViewController.m */; };
@@ -74,9 +77,13 @@
 		197787881D17F76900712042 /* BluetoothScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 197787861D17F76900712042 /* BluetoothScanViewController.xib */; };
 		1977878C1D17F99B00712042 /* ScanViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1977878A1D17F99B00712042 /* ScanViewCell.m */; };
 		1977878D1D17F99B00712042 /* ScanViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1977878B1D17F99B00712042 /* ScanViewCell.xib */; };
+		1982A78C1D49E20B004DC572 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1982A78A1D49E20B004DC572 /* SearchViewController.m */; };
+		1982A78D1D49E20B004DC572 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1982A78B1D49E20B004DC572 /* SearchViewController.xib */; };
 		1990FE1C1D3E5A6F0010955D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1990FE1B1D3E5A6F0010955D /* MessageUI.framework */; };
 		1997513C1D2FB104002C26F8 /* StockCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1997513A1D2FB104002C26F8 /* StockCheckViewController.m */; };
 		1997513D1D2FB104002C26F8 /* StockCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1997513B1D2FB104002C26F8 /* StockCheckViewController.xib */; };
+		199AD4D31D4B6315007A284C /* SelectReaderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 199AD4D21D4B6315007A284C /* SelectReaderInfo.m */; };
+		19B19C871D534ECD000DC8A7 /* ACFloatingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B19C861D534ECD000DC8A7 /* ACFloatingTextField.m */; };
 		19B50D211D2AA1E5004C2C9B /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B50D201D2AA1E5004C2C9B /* back.png */; };
 		19BC2E351D1D7A1400B6EC9D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19BC2E341D1D7A1300B6EC9D /* Images.xcassets */; };
 		19BFAE3C1D3CE50000F3D101 /* Tags+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BFAE391D3CE50000F3D101 /* Tags+CoreDataProperties.m */; };
@@ -203,6 +210,11 @@
 		197573DB1D19787A00A8B38A /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		197573E41D1978AB00A8B38A /* utilees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilees.h; sourceTree = "<group>"; };
 		197573E51D1978AB00A8B38A /* utilees.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utilees.m; sourceTree = "<group>"; };
+		197675961D51C3B50029E98E /* CommoninventoryCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommoninventoryCommand.h; sourceTree = "<group>"; };
+		197675971D51C3B50029E98E /* CommoninventoryCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommoninventoryCommand.m; sourceTree = "<group>"; };
+		197675991D51DD160029E98E /* SearchTagViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTagViewCell.h; sourceTree = "<group>"; };
+		1976759A1D51DD160029E98E /* SearchTagViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTagViewCell.m; sourceTree = "<group>"; };
+		1976759B1D51DD160029E98E /* SearchTagViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTagViewCell.xib; sourceTree = "<group>"; };
 		1977877A1D17DA2000712042 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		1977877B1D17DA2000712042 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; tabWidth = 5; };
 		1977877C1D17DA2000712042 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
@@ -215,10 +227,17 @@
 		197787891D17F99B00712042 /* ScanViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewCell.h; sourceTree = "<group>"; };
 		1977878A1D17F99B00712042 /* ScanViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanViewCell.m; sourceTree = "<group>"; };
 		1977878B1D17F99B00712042 /* ScanViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanViewCell.xib; sourceTree = "<group>"; };
+		1982A7891D49E20B004DC572 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		1982A78A1D49E20B004DC572 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		1982A78B1D49E20B004DC572 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		1990FE1B1D3E5A6F0010955D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		199751391D2FB104002C26F8 /* StockCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockCheckViewController.h; sourceTree = "<group>"; };
 		1997513A1D2FB104002C26F8 /* StockCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StockCheckViewController.m; sourceTree = "<group>"; };
 		1997513B1D2FB104002C26F8 /* StockCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StockCheckViewController.xib; sourceTree = "<group>"; };
+		199AD4D11D4B6315007A284C /* SelectReaderInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectReaderInfo.h; sourceTree = "<group>"; };
+		199AD4D21D4B6315007A284C /* SelectReaderInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectReaderInfo.m; sourceTree = "<group>"; };
+		19B19C851D534ECD000DC8A7 /* ACFloatingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACFloatingTextField.h; sourceTree = "<group>"; };
+		19B19C861D534ECD000DC8A7 /* ACFloatingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACFloatingTextField.m; sourceTree = "<group>"; };
 		19B50D201D2AA1E5004C2C9B /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		19BC2E341D1D7A1300B6EC9D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		19BFAE381D3CE50000F3D101 /* Tags+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tags+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -322,7 +341,6 @@
 		195BA3AA1D2E3A88007D9FB6 /* Bluetooth Scanner */ = {
 			isa = PBXGroup;
 			children = (
-				19EEDA1B1D3667EC00124866 /* TSLSelectReaderProtocol.h */,
 				197787841D17F76900712042 /* BluetoothScanViewController.h */,
 				197787851D17F76900712042 /* BluetoothScanViewController.m */,
 				197787861D17F76900712042 /* BluetoothScanViewController.xib */,
@@ -479,6 +497,7 @@
 		1977878E1D18020100712042 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				19B19C841D534EB9000DC8A7 /* TextFieldAnimation */,
 				19E7A3841D3F5F9B00F4BC26 /* CHCSVParser */,
 				19226CD71D37C33B00A25C3D /* circle.png */,
 				19B50D201D2AA1E5004C2C9B /* back.png */,
@@ -492,6 +511,19 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
+		1982A7881D49D88B004DC572 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				1982A7891D49E20B004DC572 /* SearchViewController.h */,
+				1982A78A1D49E20B004DC572 /* SearchViewController.m */,
+				1982A78B1D49E20B004DC572 /* SearchViewController.xib */,
+				197675991D51DD160029E98E /* SearchTagViewCell.h */,
+				1976759A1D51DD160029E98E /* SearchTagViewCell.m */,
+				1976759B1D51DD160029E98E /* SearchTagViewCell.xib */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		1990FE1A1D3E39850010955D /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +532,11 @@
 				197573231D1975B500A8B38A /* Constant.h */,
 				197573E41D1978AB00A8B38A /* utilees.h */,
 				197573E51D1978AB00A8B38A /* utilees.m */,
+				19EEDA1B1D3667EC00124866 /* TSLSelectReaderProtocol.h */,
+				199AD4D11D4B6315007A284C /* SelectReaderInfo.h */,
+				199AD4D21D4B6315007A284C /* SelectReaderInfo.m */,
+				197675961D51C3B50029E98E /* CommoninventoryCommand.h */,
+				197675971D51C3B50029E98E /* CommoninventoryCommand.m */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -512,6 +549,15 @@
 				1997513B1D2FB104002C26F8 /* StockCheckViewController.xib */,
 			);
 			name = "Stock Check";
+			sourceTree = "<group>";
+		};
+		19B19C841D534EB9000DC8A7 /* TextFieldAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				19B19C851D534ECD000DC8A7 /* ACFloatingTextField.h */,
+				19B19C861D534ECD000DC8A7 /* ACFloatingTextField.m */,
+			);
+			name = TextFieldAnimation;
 			sourceTree = "<group>";
 		};
 		19BFAE2B1D3CE42900F3D101 /* Entity */ = {
@@ -531,8 +577,9 @@
 				1967B07A1D2BE68500AC8C41 /* SlideMenuView */,
 				195BA3A91D2E3A77007D9FB6 /* Login */,
 				195BA3AA1D2E3A88007D9FB6 /* Bluetooth Scanner */,
-				195BA3A81D2E3A67007D9FB6 /* Consignment */,
 				199751381D2FB0C5002C26F8 /* Stock Check */,
+				195BA3A81D2E3A67007D9FB6 /* Consignment */,
+				1982A7881D49D88B004DC572 /* Search */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -629,7 +676,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				190C92E51D2D1A28008C3404 /* ConsignmentViewController.xib in Resources */,
+				1982A78D1D49E20B004DC572 /* SearchViewController.xib in Resources */,
 				19BC2E351D1D7A1400B6EC9D /* Images.xcassets in Resources */,
+				1976759D1D51DD160029E98E /* SearchTagViewCell.xib in Resources */,
 				197787831D17F04800712042 /* ForgotPassViewController.xib in Resources */,
 				19226CD81D37C33B00A25C3D /* circle.png in Resources */,
 				190C92DE1D2D15C3008C3404 /* LeftViewController.xib in Resources */,
@@ -708,6 +757,8 @@
 				197573AE1D19785B00A8B38A /* AFAppAPIClient.m in Sources */,
 				1967B0951D2BEA6500AC8C41 /* AMSlideMenuRightMenuSegue.m in Sources */,
 				190AFB241D1964DA00BC107D /* SBJsonStreamWriterState.m in Sources */,
+				1982A78C1D49E20B004DC572 /* SearchViewController.m in Sources */,
+				197675981D51C3B50029E98E /* CommoninventoryCommand.m in Sources */,
 				197573DD1D19787A00A8B38A /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				19BFAE3D1D3CE50000F3D101 /* Tags.m in Sources */,
 				197573C21D19786800A8B38A /* AFHTTPRequestOperation.m in Sources */,
@@ -717,12 +768,15 @@
 				190AFB1E1D1964DA00BC107D /* SBJsonStreamParser.m in Sources */,
 				190C92DD1D2D15C3008C3404 /* LeftViewController.m in Sources */,
 				197573E01D19787A00A8B38A /* UIImageView+AFNetworking.m in Sources */,
+				1976759C1D51DD160029E98E /* SearchTagViewCell.m in Sources */,
 				197573E31D19787A00A8B38A /* UIWebView+AFNetworking.m in Sources */,
 				195249071D4777F0005518DD /* SFHFKeychainUtils.m in Sources */,
 				1977877D1D17DA2000712042 /* RegisterViewController.m in Sources */,
+				19B19C871D534ECD000DC8A7 /* ACFloatingTextField.m in Sources */,
 				190AFB1C1D1964DA00BC107D /* NSObject+SBJson.m in Sources */,
 				195BA3AE1D2E400B007D9FB6 /* TagListViewController.m in Sources */,
 				1977878C1D17F99B00712042 /* ScanViewCell.m in Sources */,
+				199AD4D31D4B6315007A284C /* SelectReaderInfo.m in Sources */,
 				1997513C1D2FB104002C26F8 /* StockCheckViewController.m in Sources */,
 				19C21ED51D17D03A006DFCBA /* LoginViewController.m in Sources */,
 				197787821D17F04800712042 /* ForgotPassViewController.m in Sources */,

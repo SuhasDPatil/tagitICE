@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import <ExternalAccessory/ExternalAccessory.h>
+#import <TSLAsciiCommands/TSLAsciiCommands.h>
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    TSLAsciiCommander * _commander;
 
+}
 @property (strong, nonatomic) UIWindow *window;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

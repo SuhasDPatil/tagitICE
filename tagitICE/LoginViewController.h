@@ -12,20 +12,16 @@
 #import "BluetoothScanViewController.h"
 
 #import "AMSmoothAlertConstants.h"
-#import "AMSmoothAlertView.h"
 
 #import "AFAppAPIClient.h"
 #import "AFViewShaker.h"
 #import "Constant.h"
 #import "utilees.h"
 
+
 #import "MBProgressHUD.h"
 
 @interface LoginViewController : UIViewController
-{
-    AMSmoothAlertView * alert;
-
-}
 @property (strong, nonatomic) IBOutlet UIView *viewBorder1;
 
 @property (strong, nonatomic) IBOutlet UIView *viewBorder2;

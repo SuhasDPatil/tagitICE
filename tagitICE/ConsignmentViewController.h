@@ -11,18 +11,24 @@
 #import <ExternalAccessory/ExternalAccessory.h>
 #import <TSLAsciiCommands/TSLAsciiCommands.h>
 #import <TSLAsciiCommands/TSLAsciiCommandBase.h>
+#import <TSLAsciiCommands/TSLBinaryEncoding.h>
+
 #import <MessageUI/MessageUI.h>
 
 #import "AFHTTPRequestOperationManager.h"
 #import "AFURLRequestSerialization.h"
 #import "MBProgressHUD.h"
 #import "CHCSVParser.h"
-
+#import "Constant.h"
 #import "TSLSelectReaderProtocol.h"
 
 #import "Tags.h"
+#import "SelectReaderInfo.h"
+#import "CommoninventoryCommand.h"
 
-@interface ConsignmentViewController : UIViewController<TSLInventoryCommandTransponderReceivedDelegate, TSLBarcodeCommandBarcodeReceivedDelegate, TSLSelectReaderProtocol,MFMailComposeViewControllerDelegate>
+#import "UIView+Toast.h"
+
+@interface ConsignmentViewController : UIViewController<TSLInventoryCommandTransponderReceivedDelegate,MFMailComposeViewControllerDelegate>
 
 {
     NSMutableArray * TagcountArray;
@@ -31,9 +37,12 @@
 }
 @property (strong) NSManagedObject *existingTag;
 
-@property(strong,nonatomic) TSLAsciiCommander * commander;
+//@property(strong,nonatomic) TSLAsciiCommander * commander;
+
+@property (nonatomic,assign, getter=isProcessed) BOOL *process;
 
 
+@property (strong, nonatomic) NSArray * array;
 
 @property (strong, nonatomic) IBOutlet UIButton *btnClear;
 

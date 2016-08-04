@@ -152,11 +152,7 @@
 {
     NSString *objectString = object;
     NSError *error = nil;
-    [SFHFKeychainUtils storeUsername:key
-                         andPassword:objectString
-                      forServiceName:@"LIB"
-                      updateExisting:YES
-                               error:&error];
+    [SFHFKeychainUtils storeUsername:key andPassword:objectString forServiceName:@"LIB" updateExisting:YES error:&error];
     
     if(error)
         NSLog(@"%@", [error localizedDescription]);
@@ -165,9 +161,7 @@
 +(NSString*) objectForKey:(NSString*) key
 {
     NSError *error = nil;
-    NSString *object = [SFHFKeychainUtils getPasswordForUsername:key
-                                                  andServiceName:@"LIB"
-                                                           error:&error];
+    NSString *object = [SFHFKeychainUtils getPasswordForUsername:key andServiceName:@"LIB" error:&error];
     if(error)
         NSLog(@"%@", [error localizedDescription]);
     

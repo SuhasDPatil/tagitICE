@@ -8,6 +8,8 @@
 
 #import "BluetoothScanViewController.h"
 
+#import "SelectReaderInfo.h"
+
 @interface BluetoothScanViewController ()
 {
     NSArray * _accessoryList;
@@ -19,7 +21,7 @@
     TSLAsciiCommander *_commander;
     TSLInventoryCommand *_inventoryResponder;
     TSLBarcodeCommand *_barcodeResponder;
-    
+    MBProgressHUD *_hud;
     int _transpondersSeen;
     NSString *_partialResultMessage;
 
@@ -33,24 +35,27 @@
 {
     [super viewDidLoad];
     
+
     //New Methods
     
     // Listen for accessory connect/disconnects
     [[EAAccessoryManager sharedAccessoryManager] registerForLocalNotifications];
     
     _accessoryList = [[EAAccessoryManager sharedAccessoryManager] connectedAccessories];
-    
+
     _selectedRow = 0;
     
     
     
     // Create the TSLAsciiCommander used to communicate with the TSL Reader
-    _commander = [[TSLAsciiCommander alloc] init];
+    
+    _commander = [SelectReaderInfo sharedInstance];
     
     // TSLAsciiCommander requires TSLAsciiResponders to handle incoming reader responses
     
     // Add a logger to the commander to output all reader responses to the log file
     [_commander addResponder:[[TSLLoggerResponder alloc] init]];
+    
     
     // Some synchronous commands will be used in the app
     [_commander addSynchronousResponder];
@@ -96,23 +101,18 @@
     
     // Update list of connected accessories
     _accessoryList = [[EAAccessoryManager sharedAccessoryManager] connectedAccessories];
-
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_accessoryDidConnect:) name:EAAccessoryDidConnectNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_accessoryDidDisconnect:) name:EAAccessoryDidDisconnectNotification object:nil];
     
     if([UIScreen mainScreen].bounds.size.width>=700)
     {
-      
         _btnScan.titleLabel.font = [UIFont boldSystemFontOfSize:30 ];
         [self.navigationController.navigationBar setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width,90)];
     }
     else
     {
-        
         _btnScan.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        
     }
 }
 
@@ -152,6 +152,8 @@
          {
              // Inform the user that the device is being connected
              //             _hud = [TSLProgressHUD updateHUD:_hud inView:self.view forBusyState:YES withMessage:@"Waiting for device..."];
+             NSLog(@"Device Connected %@",[[EAAccessoryManager sharedAccessoryManager]connectedAccessories]);
+             
          }
          else
          {
@@ -276,105 +278,93 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Loading...";
-    [hud show:YES];
+//    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    _hud.labelText = @"Connecting...";
+//    [_hud show:YES];
 
-    if( _accessoryList.count > 0 )
-    {
-        _selectedRow = indexPath.row;
-//        [self.delegate didSelectReaderForRow:_selectedRow];
-        
-        [self didSelectReaderForRow:_selectedRow];
-    }
     
+    
+    _hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.labelText=@"Connecting...";
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Do something...
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // Connect to the chosen TSL Reader
+            if( _accessoryList.count > 0 )
+            {
+                // The row is the offset into the list of connected accessories
+                _currentAccessory = [_accessoryList objectAtIndex:_selectedRow];
+                [_commander connect:_currentAccessory];
+                [SelectReaderInfo setSelectedReader:_commander];
+                
+            }
+            
+            // Prepare and show the connected reader
+            if( _commander.isConnected )
+            {
+                // Display the serial number of the successfully connected unit
+                NSLog(@"Selected Reader : %@",_currentAccessory.serialNumber);
+                // Ensure the reader is in a known (default) state
+                // No information is returned by the reset command
+                //        TSLFactoryDefaultsCommand * resetCommand = [TSLFactoryDefaultsCommand synchronousCommand];
+                //        [_commander executeCommand:resetCommand];
+                
+                // Get version information for the reader
+                // Use the TSLVersionInformationCommand synchronously as the returned information is needed below
+                TSLVersionInformationCommand * versionCommand = [TSLVersionInformationCommand synchronousCommand];
+                [_commander executeCommand:versionCommand];
+                
+                TSLBatteryStatusCommand *batteryCommand = [TSLBatteryStatusCommand synchronousCommand];
+                [_commander executeCommand:batteryCommand];
+                
+                
+                // Display some of the values obtained
+                
+                NSLog(@"\nManufacturer:  %@\nSerial Number:  %@\nASCII Protocl:  %@\nBattery Level:  %@\n\n",
+                      versionCommand.manufacturer,
+                      versionCommand.serialNumber,
+                      versionCommand.asciiProtocol,
+                      [NSString stringWithFormat:@"%d%%", batteryCommand.batteryLevel]);
+                
+                
+                
+                alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Connected !" andText:@"Connected to RFID Reader !" andCancelButton:NO forAlertType:AlertSuccess];
+                [alert.defaultButton setTitle:@"Ok" forState:UIControlStateNormal];
+                alert.completionBlock = ^void (AMSmoothAlertView *alertObj, UIButton *button) {
+                    if(button == alertObj.defaultButton) {
+
+                        MainVC * mvc=[[MainVC alloc]init];
+                        [self.navigationController pushViewController:mvc animated:YES];
+
+                        
+                    } else {
+                        NSLog(@"Others");
+                    }
+                };
+                
+                alert.cornerRadius = 3.0f;
+                [alert show];
+            }
+            else
+            {
+                NSLog(@"Select Reader");
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
+
 }
 
 -(void)didSelectReaderForRow:(NSInteger)row
 {
+
     // Disconnect from the current reader, if any
-    [_commander disconnect];
+//    [_commander disconnect];
     
-    // Connect to the chosen TSL Reader
-    if( _accessoryList.count > 0 )
-    {
-        // The row is the offset into the list of connected accessories
-        _currentAccessory = [_accessoryList objectAtIndex:row];
-        [_commander connect:_currentAccessory];
-    }
     
-    // Prepare and show the connected reader
-    [self initAndShowConnectedReader];
-}
-
--(void)initAndShowConnectedReader
-{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Loading...";
-    [hud show:YES];
-
-    // Prepare and show the connected reader
-    if( _commander.isConnected )
-    {
-        // Display the serial number of the successfully connected unit
-        NSLog(@"Selected Reader : %@",_currentAccessory.serialNumber);
-        // Ensure the reader is in a known (default) state
-        // No information is returned by the reset command
-        TSLFactoryDefaultsCommand * resetCommand = [TSLFactoryDefaultsCommand synchronousCommand];
-        [_commander executeCommand:resetCommand];
-        
-        // Notify user device has been reset
-        if( resetCommand.isSuccessful )
-        {
-        }
-        else
-        {
-        }
-        
-        // Get version information for the reader
-        // Use the TSLVersionInformationCommand synchronously as the returned information is needed below
-        TSLVersionInformationCommand * versionCommand = [TSLVersionInformationCommand synchronousCommand];
-        [_commander executeCommand:versionCommand];
-        TSLBatteryStatusCommand *batteryCommand = [TSLBatteryStatusCommand synchronousCommand];
-        [_commander executeCommand:batteryCommand];
-        
-        
-        // Display some of the values obtained
-        
-        NSLog(@"\nManufacturer:  %@\nSerial Number:  %@\nASCII Protocl:  %@\nBattery Level:  %@\n\n",
-              versionCommand.manufacturer,
-              versionCommand.serialNumber,
-              versionCommand.asciiProtocol,
-              [NSString stringWithFormat:@"%d%%", batteryCommand.batteryLevel]);
-        
-    
-        ConsignmentViewController *cvc=[[ConsignmentViewController alloc]init];
-        
-        cvc.commander=_commander;
-        
-        [self.navigationController pushViewController:cvc animated:YES];
-
-//        MainVC * mvc=[[MainVC alloc]init];
-//        
-//        mvc.commander=_commander;
-//        
-//        [self.navigationController pushViewController:mvc animated:YES];
-
-        
-        
-        
-//        [self.navigationController pushViewController:cvc animated:YES];
-        
-        // Ensure new information is visible
-        //        [self.resultsTextView scrollRangeToVisible:NSMakeRange(self.resultsTextView.text.length - 1, 1)];
-        
-    }
-    else
-    {
-        //        [self.selectReaderButton setTitle:@"Tap to select reader..." forState:UIControlStateNormal];
-        NSLog(@"Select Reader");
-    }
-    [hud hide:YES];
 }
 
 
@@ -418,8 +408,6 @@
         NSLog(@"**********************************************");
     }
 }
-
-
 
 
 #pragma mark User Defined

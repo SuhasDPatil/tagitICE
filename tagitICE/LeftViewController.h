@@ -10,6 +10,8 @@
 #import "AMSlideMenuLeftTableViewController.h"
 #import "StockCheckViewController.h"
 #import "ConsignmentViewController.h"
+#import "SearchViewController.h"
+
 #import "Constant.h"
 
 #import "MainVC.h"

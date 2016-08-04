@@ -5,12 +5,14 @@ PODS:
   - GPUImage (0.1.7)
   - IQKeyboardManager (4.0.3)
   - MBProgressHUD (0.9.2)
+  - Toast (3.0)
 
 DEPENDENCIES:
   - AFViewShaker (~> 0.0.2)
   - AMSmoothAlert (~> 1.0)
   - IQKeyboardManager
   - MBProgressHUD (~> 0.9.2)
+  - Toast (~> 3.0)
 
 SPEC CHECKSUMS:
   AFViewShaker: 7e4bc215ca3e92347b78da436fca74e1730b52e8
@@ -18,7 +20,8 @@ SPEC CHECKSUMS:
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   IQKeyboardManager: be9695ffc5a52077deb4847608f338771022d6d1
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  Toast: 32c59229abfcf41850162b83bb9259dc84372473
 
-PODFILE CHECKSUM: 7c8945facca23a254ffae7c25b0483c28963e1f4
+PODFILE CHECKSUM: f3f45df5402ed8e1435450fd302690691a39278e
 
 COCOAPODS: 1.0.1
