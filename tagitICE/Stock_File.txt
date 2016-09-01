@@ -1,0 +1,102 @@
+[
+{"Item_Code":"49870D39661D29049D00327D","Item_Description":"WATCH","Gross_Wt":5,"Location_Name":"CLARA","Category":"18K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D00007D","Item_Description":"22KT <SHINATHJI> GOLD","Gross_Wt":29.4,"Location_Name":"CLARA","Category":"18K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D00227D","Item_Description":"22KT <RADHE KIRSHNA> GOLD","Gross_Wt":33,"Location_Name":"CLARA","Category":"18K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D00313D","Item_Description":"21KT GOLD COIN","Gross_Wt":3.2,"Location_Name":"CLARA","Category":"18K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D00013D","Item_Description":"22KT GOLD COIN","Gross_Wt":33.9,"Location_Name":"CLARA","Category":"18K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018556","Item_Description":"22KT GOLD COIN","Gross_Wt":17,"Location_Name":"CLARA","Category":"18K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D0010FD","Item_Description":"22KT GOLD COIN","Gross_Wt":8.5,"Location_Name":"CLARA","Category":"18K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D0021BD","Item_Description":"ORO 37.50GM PURE","Gross_Wt":37.5,"Location_Name":"CLARA","Category":"18K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D00417D","Item_Description":"22 KT GOLD COIN","Gross_Wt":8.5,"Location_Name":"CLARA","Category":"18K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018560","Item_Description":"22 KT GOLD COIN","Gross_Wt":3.5,"Location_Name":"CLARA","Category":"18K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D00017D","Item_Description":"18K Bangle","Gross_Wt":8.6,"Location_Name":"CLARA","Category":"18K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018562","Item_Description":"21KT GOLD COIN","Gross_Wt":4,"Location_Name":"CLARA","Category":"21K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018563","Item_Description":"22KT GOLD COIN","Gross_Wt":19.6,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018564","Item_Description":"22KT GOLD COIN","Gross_Wt":19.6,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018565","Item_Description":"22KT GOLD COIN","Gross_Wt":19.6,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018566","Item_Description":"22KT GOLD COIN","Gross_Wt":40,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018567","Item_Description":"22KT GOLD COIN","Gross_Wt":34.6,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018568","Item_Description":"22KT GOLD COIN","Gross_Wt":17,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018569","Item_Description":"22KT GOLD COIN","Gross_Wt":4,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018570","Item_Description":"22KT GOLD COIN","Gross_Wt":4,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018571","Item_Description":"21KT GOLD COIN","Gross_Wt":4,"Location_Name":"CLARA","Category":"21K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018572","Item_Description":"24 KT GOLD COIN","Gross_Wt":1,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018573","Item_Description":"24 KT GOLD COIN","Gross_Wt":1,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018574","Item_Description":"24 KT GOLD COIN","Gross_Wt":15.55,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018575","Item_Description":"22KT GOLD COIN","Gross_Wt":33.95,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018576","Item_Description":"24 KT GOLD COIN","Gross_Wt":50,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018577","Item_Description":"24 KT GOLD COIN","Gross_Wt":10,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018578","Item_Description":"24 KT GOLD COIN","Gross_Wt":10,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018579","Item_Description":"24 KT GOLD COIN","Gross_Wt":31.14,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018580","Item_Description":"22KT GOLD COIN","Gross_Wt":8,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018581","Item_Description":"22KT GOLD COIN","Gross_Wt":8,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018582","Item_Description":"22KT GOLD COIN","Gross_Wt":8,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018583","Item_Description":"22KT GOLD COIN","Gross_Wt":8,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018584","Item_Description":"22KT GOLD COIN","Gross_Wt":8,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D0030BD","Item_Description":"22KT GOLD COIN","Gross_Wt":8,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018586","Item_Description":"22KT GOLD COIN","Gross_Wt":8,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018587","Item_Description":"22KT GOLD COIN","Gross_Wt":8,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018588","Item_Description":"22KT GOLD COIN","Gross_Wt":8,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D00407D","Item_Description":"22KT GOLD COIN","Gross_Wt":8,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018590","Item_Description":"22KT GOLD COIN","Gross_Wt":8,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018591","Item_Description":"22KT GOLD COIN","Gross_Wt":8,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018592","Item_Description":"22KT GOLD COIN","Gross_Wt":4,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018593","Item_Description":"22KT GOLD COIN","Gross_Wt":4,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018594","Item_Description":"22KT GOLD COIN","Gross_Wt":4,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018595","Item_Description":"22KT GOLD COIN","Gross_Wt":4,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018596","Item_Description":"22KT GOLD COIN","Gross_Wt":1.5,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018597","Item_Description":"22KT GOLD COIN","Gross_Wt":1,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018598","Item_Description":"22KT GOLD COIN","Gross_Wt":5,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018599","Item_Description":"22KT GOLD COIN","Gross_Wt":5,"Location_Name":"CLARA","Category":"22K GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018600","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018601","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018602","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D00203D","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018604","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018605","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018606","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018607","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018608","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018609","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018610","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018611","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018612","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018613","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018614","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018615","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018616","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018617","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018618","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018619","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018620","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018621","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018622","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018623","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018624","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018625","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018626","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018627","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018628","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018629","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018630","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018631","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018632","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018633","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018634","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018635","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018636","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018637","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018638","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018639","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018640","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018641","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018642","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D00207D","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018644","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018645","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018646","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018647","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"49870D39661D29049D0021FD","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018649","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+,{"Item_Code":"M018650","Item_Description":"24 KT GOLD COIN","Gross_Wt":20,"Location_Name":"CLARA","Category":"24K  GOLD JEWELLERY","Tag_Price":0.0000,"Qty":1}
+]

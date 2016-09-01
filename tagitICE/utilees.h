@@ -11,7 +11,7 @@
 
 @interface utilees : NSObject
 
-+(void)showAlert:(NSString *)title Message:(NSString *)msg;
+//+(void)showAlert:(NSString *)title Message:(NSString *)msg;
 + (NSString *) md5:(NSString *) input;
 +(NSDictionary *) getUser;
 +(NSString *)getUserDataForKey:(NSString *)key;
@@ -24,5 +24,6 @@
 + (NSString *)GetDeviceID;
 +(void) setObject:(NSString*) object forKey:(NSString*) key;
 +(NSString*) objectForKey:(NSString*) key;
+
 
 @end

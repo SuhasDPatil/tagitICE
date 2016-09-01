@@ -17,12 +17,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 
     _macAddress = [utilees GetDeviceID];
-    
-    NSLog(@"%@",_macAddress);
-    
     
     self.title=@"SIGN UP";
     
@@ -45,11 +41,6 @@
 
 
 
-
-- (void)goback
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -138,13 +129,24 @@
         [self.navigationController.navigationBar
          setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
         self.navigationController.navigationBar.translucent = NO;
-        
-
- 
     }
+    //Back Button
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *backBtnImage = [UIImage imageNamed:@"back.png"]  ;
+    [backBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(goback) forControlEvents:UIControlEventTouchUpInside];
+    backBtn.frame = CGRectMake(0, 0, 12, 20);
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn] ;
+    self.navigationItem.leftBarButtonItem = backButton;
+
     
 }
 
+
+- (void)goback
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 
@@ -242,7 +244,6 @@
         NSNumber *val = responseObject;
         BOOL dict = [val boolValue];
 
-        NSLog(@"Resp %d",dict);
         
         if (dict==0)
         {

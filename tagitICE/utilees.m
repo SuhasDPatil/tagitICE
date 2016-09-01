@@ -49,8 +49,7 @@
 +(NSMutableArray *)SortArray:(NSMutableArray *) inputArray Key:(NSString  *) key
 {
     
-    NSSortDescriptor *sortByName = [NSSortDescriptor sortDescriptorWithKey:key
-                                                                 ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    NSSortDescriptor *sortByName = [NSSortDescriptor sortDescriptorWithKey:key ascending:YES selector:@selector(caseInsensitiveCompare:)];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortByName];
     NSArray *sortedArray = [inputArray sortedArrayUsingDescriptors:sortDescriptors];
     return [sortedArray mutableCopy] ;
@@ -95,8 +94,6 @@
     }
 }
 
-
-
 -(NSDictionary *) getEncodedNDDictionayValues:(NSDictionary *)dict
 {
     @try
@@ -131,7 +128,6 @@
     }
 }
 
-
 #pragma mark User Defined Class methods for geetting CFUUID and save into keychain Access
 
 + (NSString *)GetDeviceID
@@ -162,6 +158,7 @@
 {
     NSError *error = nil;
     NSString *object = [SFHFKeychainUtils getPasswordForUsername:key andServiceName:@"LIB" error:&error];
+    
     if(error)
         NSLog(@"%@", [error localizedDescription]);
     

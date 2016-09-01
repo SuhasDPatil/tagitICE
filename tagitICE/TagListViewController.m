@@ -46,8 +46,14 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn] ;
     self.navigationItem.leftBarButtonItem = backButton;
 
-    
-    self.title=@"CONSIGNMENT";
+    if ([_getFunction isEqualToString:@"CONSIGNMENT"])
+    {
+        self.title=@"CONSIGNMENT";
+    }
+    else if ([_getFunction isEqualToString:@"EXTRA"])
+    {
+        self.title=@"EXTRA";
+    }
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"TagViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     
@@ -61,16 +67,24 @@
     
     [hud show:YES];
 
-    // Fetch the devices from persistent data store
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Tags"];
-    
-    self.tags = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    
-    
-    [self.collectionView reloadData];
-    
+    // Fetch the Tags from persistent data store
+    if ([_getFunction isEqualToString:@"CONSIGNMENT"])
+    {
+
+        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Tags"];
+        
+        self.tags = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+        
+        
+        [self.collectionView reloadData];
+    }
+    else if ([_getFunction isEqualToString:@"EXTRA"])
+    {
+
+    }
+
     [hud hide:YES];
 
 }
@@ -94,7 +108,16 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [_tags count];
+    NSInteger count;
+    if ([_getFunction isEqualToString:@"CONSIGNMENT"])
+    {
+        count=[_tags count];
+    }
+    else if ([_getFunction isEqualToString:@"EXTRA"])
+    {
+        count=[_T_ExtraArray count];
+    }
+    return count;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -102,13 +125,25 @@
 
     TagViewCell * cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
-    NSManagedObject *tags = [self.tags objectAtIndex:indexPath.row];
+    if ([_getFunction isEqualToString:@"CONSIGNMENT"])
+    {
 
-    cell.lblTagText.text=[NSString stringWithFormat:@"%@", [tags valueForKey:@"srNumber"]];
-    
-    cell.lblTagCount.text=[NSString stringWithFormat:@"%@", [tags valueForKey:@"quantity"]];
-    
-    
+        NSManagedObject *tags = [self.tags objectAtIndex:indexPath.row];
+
+        cell.lblTagText.text=[NSString stringWithFormat:@"%@", [tags valueForKey:@"srNumber"]];
+        
+        cell.lblTagCount.text=[NSString stringWithFormat:@"%@", [tags valueForKey:@"quantity"]];
+    }
+    else if ([_getFunction isEqualToString:@"EXTRA"])
+    {
+        
+        NSMutableDictionary* tempDict=[_T_ExtraArray objectAtIndex:indexPath.row];
+
+        cell.lblTagText.text=[NSString stringWithFormat:@"%@", [tempDict valueForKey:@"srNumber"]];
+        
+        cell.lblTagCount.text=[NSString stringWithFormat:@"%@", [tempDict valueForKey:@"quantity"]];
+
+    }
     return cell;
 
 }

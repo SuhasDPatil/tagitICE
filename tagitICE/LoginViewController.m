@@ -27,9 +27,6 @@
     
     UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, -app.statusBarFrame.size.height, self.view.bounds.size.width, app.statusBarFrame.size.height)];
     statusBarView.backgroundColor = [UIColor blackColor];
-
-//    _txtMac_Address= [[[UIDevice currentDevice] identifierForVendor] UUIDString]; // IOS 6+
-//    NSLog(@"UDID:: %@", _txtMac_Address);
     
     [[self.viewBorder1 layer] setBorderWidth:5.0f];
     [[self.viewBorder1 layer] setBorderColor:[UIColor clearColor].CGColor];
@@ -61,38 +58,29 @@
 
     self.navigationController.navigationBarHidden=YES;
     
-    
-       if([UIScreen mainScreen].bounds.size.width>=700)
-        {
-  
-            [_txtUserName setFont:[UIFont systemFontOfSize:25]];
-            [_txtPassword setFont:[UIFont systemFontOfSize:25]];
-            
-           // _btnForgotPassword.titleLabel.font = [UIFont systemFontOfSize: 30];
-            _btnSignIn.titleLabel.font = [UIFont boldSystemFontOfSize:30];
-            _btnSignUp.titleLabel.font = [UIFont boldSystemFontOfSize:30];
-            _btnForgotPassword.titleLabel.font = [UIFont italicSystemFontOfSize:35 ];
-        }
-        else
-        {
-            
-            [_txtUserName setFont:[UIFont systemFontOfSize:16]];
-            [_txtPassword setFont:[UIFont systemFontOfSize:16]];
-            _btnSignIn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-            _btnSignUp.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-            _btnForgotPassword.titleLabel.font = [UIFont italicSystemFontOfSize:16 ];
-
-        }
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
+    if([UIScreen mainScreen].bounds.size.width>=700)
+    {
+        [_txtUserName setFont:[UIFont systemFontOfSize:25]];
+        [_txtPassword setFont:[UIFont systemFontOfSize:25]];
+        
+       // _btnForgotPassword.titleLabel.font = [UIFont systemFontOfSize: 30];
+        _btnSignIn.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+        _btnSignUp.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+        _btnForgotPassword.titleLabel.font = [UIFont italicSystemFontOfSize:35 ];
+    }
+    else
+    {
+        [_txtUserName setFont:[UIFont systemFontOfSize:16]];
+        [_txtPassword setFont:[UIFont systemFontOfSize:16]];
+        _btnSignIn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        _btnSignUp.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        _btnForgotPassword.titleLabel.font = [UIFont italicSystemFontOfSize:16 ];
+    }
+    defa=[NSUserDefaults standardUserDefaults];
+    NSString *un=[defa objectForKey:@"UN"];
+    NSString *pw=[defa objectForKey:@"PW"];
+    _txtUserName.text=un;
+    _txtPassword.text=pw;
 }
 
 
@@ -188,12 +176,10 @@
     NSString * Password=@"Password";
     NSString * Mac_Address=@"Mac_Address";
     
-    
     NSString *Stringdict=[NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"}",User_Name,_txtUserName.text,Password,_txtPassword.text,Mac_Address,_txtMac_Address];
     NSString * urlStr=[NSString stringWithFormat:@"%@%@",API_VALIDATE_CLIENT_LOGIN,Stringdict];
     NSString *encoded = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    
+
     
     [[AFAppAPIClient WSsharedClient]GET:encoded parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -201,7 +187,6 @@
 
         NSMutableDictionary * dict=responseObject;
         
-        NSLog(@"Resp%@",dict);
         _Client_Code=[dict valueForKey:@"Client_Code"];
         _Client_Id=[dict valueForKey:@"Client_Id"];
         _Client_Name=[dict valueForKey:@"Client_Name"];
@@ -226,9 +211,6 @@
             [alt addAction:ok];
             
             [self presentViewController:alt animated:YES completion:nil];
-            
-
-            
         }
         else if (_User_Name==(id)[NSNull null] || _User_Name==(id)[NSNull null] || _User_Name==(id)[NSNull null])
         {
@@ -264,7 +246,6 @@
 //            BluetoothScanViewController *bsvc=[[BluetoothScanViewController alloc]init];
 //            [self.navigationController pushViewController:bsvc animated:YES];
 //
-//
 //        }
         else if (_txtUserName.text==_User_Name && _txtPassword.text==_Password && _txtMac_Address!=_Mac_Address)
         {
@@ -282,23 +263,23 @@
         }
         else
         {
+            defa=[NSUserDefaults standardUserDefaults];
+            [defa setObject:_txtUserName.text forKey:@"UN"];
+            [defa setObject:_txtPassword.text forKey:@"PW"];
+            
+            [defa synchronize];
             
             BluetoothScanViewController *bsvc=[[BluetoothScanViewController alloc]init];
             [self.navigationController pushViewController:bsvc animated:YES];
-
-            
 
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-
         NSLog(@"%@",[error localizedDescription]);
 
     }];
-    
-
 }
 
 

@@ -68,7 +68,7 @@
     
     _inventoryResponder.captureNonLibraryResponses = YES;
     
-    _inventoryResponder.includeTransponderRSSI=TSL_TriState_NO;
+    _inventoryResponder.includeTransponderRSSI=TSL_TriState_YES;
     
     _inventoryResponder.responseBeganBlock = ^
     {
@@ -110,7 +110,6 @@
         statusBar.backgroundColor = color;
     }
 }
-
 
 
 -(void)viewWillAppear:(BOOL)animated
@@ -169,7 +168,6 @@
 
 
 #pragma mark - TSLInventoryCommandTransponderReceivedDelegate methods
-
 //
 // Each transponder received from the reader is passed to this method
 //
@@ -214,7 +212,6 @@
     
     [_btnTagCount setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)[_array count]] forState:UIControlStateNormal];
 
-//    NSLog(@"Updated Particular Message: %@",_partialResultMessage);
 }
 
 
@@ -289,7 +286,6 @@
     _array=nil;
     [TagcountArray removeAllObjects];
     
-    NSLog(@"%ld",(long)[_array count]);
     
     
     //    [_btnTagCount setTitle:@"0" forState:UIControlStateNormal];
@@ -319,20 +315,16 @@
     
     if ([_btnTagCount.titleLabel.text isEqualToString:@"0"])
     {
+        
     }
     else
     {
-        
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"Loading...";
         [hud show:YES];
-        
         [self checkForDuplicates];
         processing=YES;
-        
-        
         [hud hide:YES];
-
     }
 }
 
@@ -340,32 +332,26 @@
 -(void)checkForDuplicates
 {
     NSManagedObjectContext *context = [self managedObjectContext];
-
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tags"
                                               inManagedObjectContext:context];
-    
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entity];
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"srNumber"
-                                                                   ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"srNumber" ascending:NO];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    
     [request setSortDescriptors:sortDescriptors];
     
     NSError *Fetcherror;
-    NSMutableArray *mutableFetchResults = [[context
-                                            executeFetchRequest:request error:&Fetcherror] mutableCopy];
+    NSMutableArray *mutableFetchResults = [[context executeFetchRequest:request error:&Fetcherror] mutableCopy];
     
-    if (!mutableFetchResults) {
+    if (!mutableFetchResults)
+    {
         // error handling code.
     }
     
     for (int i=0; i<[_array count]; i++)
     {
-
-        if ([[mutableFetchResults valueForKey:@"srNumber"]
-             containsObject:[_array objectAtIndex:i]]) {
+        if ([[mutableFetchResults valueForKey:@"srNumber"] containsObject:[_array objectAtIndex:i]])
+        {
             NSLog(@"Duplicate Found");
             
         }
@@ -377,14 +363,12 @@
             [newtag setValue:@"1" forKey:@"quantity"];
         }
     }
-    
-    NSError *error = nil;
+     NSError *error = nil;
     // Save the object to persistent store
     if (![context save:&error])
     {
         NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
-    
     [_btnTagCount setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)[_array count]] forState:UIControlStateNormal];
 }
 
@@ -393,19 +377,14 @@
     if ([_btnTagCount.titleLabel.text isEqualToString:@"0"] ||  processing==NO)
     {
         // Make toast with a title
-        [self.navigationController.view makeToast:@"Pease Process data to send tags!"
-                                         duration:2.2
-                                         position:CSToastPositionBottom
-                                            title:nil
-                                            image:nil
-                                            style:nil
-                                       completion:nil];
-
+        _btnSend.userInteractionEnabled=NO;
+        [self.navigationController.view makeToast:@"Please Process data to send tags!" duration:2.2 position:CSToastPositionBottom title:nil image:nil style:nil completion:^(BOOL didTap) {
+            _btnSend.userInteractionEnabled=YES;
+        }];
     }
     else
     {
         [self createCSV];
-
     }
 }
 
@@ -414,18 +393,15 @@
     if ([_btnTagCount.titleLabel.text isEqualToString:@"0"] ||  processing==NO)
     {
         // Make toast with a title
-        [self.navigationController.view makeToast:@"Pease Process data to view tags!"
-                                         duration:2.2
-                                         position:CSToastPositionBottom
-                                            title:nil
-                                            image:nil
-                                            style:nil
-                                       completion:nil];
-        
+        _btnTagCount.userInteractionEnabled=NO;
+        [self.navigationController.view makeToast:@"Please Process data to view tags!" duration:2.2 position:CSToastPositionBottom title:nil image:nil style:nil completion:^(BOOL didTap) {
+            _btnTagCount.userInteractionEnabled=YES;
+        }];
     }
     else
     {
         TagListViewController * tlvc=[[TagListViewController alloc]init];
+        tlvc.getFunction=@"CONSIGNMENT";
         [self.navigationController pushViewController:tlvc animated:YES];
     }
 }
@@ -433,12 +409,9 @@
 -(void)createCSV
 {
     NSManagedObjectContext *moc = [self managedObjectContext];
-//    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Tags" inManagedObjectContext:moc];
-    
     NSMutableArray *results = [[NSMutableArray alloc] init];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"Tags" inManagedObjectContext:moc]];
-    
     [request setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"quantity" ascending:YES]]];
     NSError *error = nil;
     NSArray *tagItems = [moc executeFetchRequest:request error:&error];
@@ -457,7 +430,6 @@
         }
     }
     NSString *resultString = [results componentsJoinedByString:@" \n"];
-    NSLog(@"%@",resultString);
     
     if ( [MFMailComposeViewController canSendMail] )
     {
@@ -476,7 +448,6 @@
         formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"dd_MM_yyyy_HH:mm:ss"];
         dateString = [formatter stringFromDate:[NSDate date]];
-        NSLog(@"%@",dateString);
         NSString *strFileNameDateTime=[NSString stringWithFormat:@"Consignment_report_%@.csv",dateString];
         [mailComposer addAttachmentData:myData mimeType:@"text/cvs" fileName:strFileNameDateTime];
         

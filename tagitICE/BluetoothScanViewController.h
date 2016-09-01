@@ -10,6 +10,7 @@
 #import "ScanViewCell.h"
 #import "Constant.h"
 #import "MainVC.h"
+#import "LoadStockViewController.h"
 #import "ConsignmentViewController.h"
 
 #import "MBProgressHUD.h"
@@ -19,7 +20,6 @@
 #import <TSLAsciiCommands/TSLAsciiCommands.h>
 
 
-
 #import "AMSmoothAlertView.h"
 #import "TSLSelectReaderProtocol.h"
 
@@ -27,10 +27,12 @@
 @interface BluetoothScanViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 {
     AMSmoothAlertView * alert;
-    
+    MBProgressHUD *hud;
+
 }
 
 
+@property (strong) NSMutableArray *devices;
 
 // The delegate to be informed of reader selections
 @property (nonatomic, readwrite) id<TSLSelectReaderProtocol> delegate;

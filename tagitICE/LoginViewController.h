@@ -22,6 +22,9 @@
 #import "MBProgressHUD.h"
 
 @interface LoginViewController : UIViewController
+{
+    NSUserDefaults * defa;
+}
 @property (strong, nonatomic) IBOutlet UIView *viewBorder1;
 
 @property (strong, nonatomic) IBOutlet UIView *viewBorder2;

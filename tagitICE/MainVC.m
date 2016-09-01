@@ -25,6 +25,8 @@
 
 - (void)viewDidLoad
 {
+    [self.view endEditing:YES];
+    
     UIApplication *app = [UIApplication sharedApplication];
     
     UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, -app.statusBarFrame.size.height, self.view.bounds.size.width, app.statusBarFrame.size.height)];
@@ -47,6 +49,11 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.view endEditing:YES];
+
+}
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
     
     UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];

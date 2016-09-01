@@ -24,22 +24,31 @@
     [super viewDidLoad];
     self.title=@"Search";
 
+    addItemClicked=NO;
+    isSoundPlayed=NO;
+    
+    spliStringArray=[[NSArray alloc]init];
     [_txtSearch setTextFieldPlaceholderText:@"Search Tags"];
     _txtSearch.btmLineSelectionColor = [UIColor clearColor];
     _txtSearch.placeHolderTextColor = [UIColor redColor];
     _txtSearch.selectedPlaceHolderTextColor = [UIColor redColor];
     _txtSearch.btmLineColor = [UIColor clearColor];
 
+    _btntxtClear.hidden=YES;
+    _imgClear.hidden=YES;
+
     
+    AddTagArray=[[NSMutableArray alloc]init];
     
-    AddTagArray=[[NSArray alloc]init];
+    matchedTags=[[NSMutableArray alloc]init];
+    
     
     [self setNavBar];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"SearchTagViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     
-    searchTagArray=[[NSMutableArray alloc]init];
-    tagDict=[[NSMutableDictionary alloc]init];
+    scanTagArray=[[NSMutableArray alloc]init];
+    scanDict=[[NSMutableDictionary alloc]init];
 
     _commander=[SelectReaderInfo sharedInstance];
     
@@ -48,7 +57,7 @@
     _inventoryResponder = [CommoninventoryCommand sharedInstance] ;    // Create a TSLInventoryCommand
     _inventoryResponder.transponderReceivedDelegate = self;    // Add self as the transponder delegate
     
-    _inventoryResponder.includeTransponderRSSI=TSL_TriState_NO;
+    _inventoryResponder.includeTransponderRSSI=TSL_TriState_YES;
 
     _inventoryResponder.captureNonLibraryResponses = YES;
     
@@ -62,6 +71,7 @@
     {
         dispatch_async(dispatch_get_main_queue(),^
                        {
+                           [self.collectionView reloadData];
                        });
     };
     
@@ -76,8 +86,18 @@
     _inventoryResponder.transponderReceivedDelegate = self;    // Add self as the transponder delegate
     
     _inventoryResponder.captureNonLibraryResponses = YES;
+    self.timer = nil;
+
 
 }
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.timer = nil;
+    
+    [super viewWillDisappear:animated];
+}
+
+
 -(void)commanderChangedState
 {
     // Update the 'select reader' button
@@ -117,17 +137,49 @@
 }
 */
 #pragma mark UITextfield Delegates
--(void)textFieldDidBeginEditing:(UITextField *)textField {
-    
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
     [(ACFloatingTextField *)textField textFieldDidBeginEditing];
+    if ([_txtSearch.text isEqualToString:@""])
+    {
+        
+        _btntxtClear.hidden=YES;
+        _imgClear.hidden=YES;
+    }
+    else
+    {
+        _btntxtClear.hidden=NO;
+        _imgClear.hidden=NO;
+    }
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     [(ACFloatingTextField *)textField textFieldDidEndEditing];
-    
+    if ([_txtSearch.text isEqualToString:@""])
+    {
+        
+        _btntxtClear.hidden=YES;
+        _imgClear.hidden=YES;
+    }
+    else
+    {
+        _btntxtClear.hidden=NO;
+        _imgClear.hidden=NO;
+    }
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [textField resignFirstResponder];
+    if ([_txtSearch.text isEqualToString:@""])
+    {
+        
+        _btntxtClear.hidden=YES;
+        _imgClear.hidden=YES;
+    }
+    else
+    {
+        _btntxtClear.hidden=NO;
+        _imgClear.hidden=NO;
+    }
     return YES;
 }
 
@@ -170,23 +222,206 @@
 }
 
 #pragma mark Button click methods
+- (IBAction)textClearClicked:(id)sender
+{
+    _txtSearch.text=@"";
+    _btntxtClear.hidden=YES;
+    _imgClear.hidden=YES;
+    
+}
+
 - (IBAction)additemClicked:(id)sender
 {
+    addItemClicked=YES;
+    
+
     NSString *myString = _txtSearch.text;
+    myString=[myString uppercaseString];
     
-    AddTagArray = [myString componentsSeparatedByString:@","];
-    
-    NSLog(@"%@",AddTagArray);
-    [_collectionView reloadData];
-    
+    spliStringArray=nil;
+    isSoundPlayed=NO;
+    [AddTagArray removeAllObjects];
+    if (myString==nil || [myString isEqualToString:@""])
+    {
+        
+        
+    }
+    else
+    {
+        spliStringArray = [myString componentsSeparatedByString:@","];
+        
+        NSMutableArray * tempArray = [spliStringArray mutableCopy];
+        
+        for (int i=0;i<[tempArray count];i++)
+        {
+            if ([tempArray[i] isEqualToString: @""])
+            {
+                [tempArray removeObject: tempArray[i]];
+            }
+            else if ([tempArray[i] isEqualToString: @" "])
+            {
+                [tempArray removeObject: tempArray[i]];
+            }
+            else if ([tempArray[i] isEqualToString: @"  "])
+            {
+                [tempArray removeObject: tempArray[i]];
+            }
+            else if ([tempArray[i] isEqualToString: @"   "])
+            {
+                [tempArray removeObject: tempArray[i]];
+            }
+            else if ([tempArray[i] isEqualToString: @"    "])
+            {
+                [tempArray removeObject: tempArray[i]];
+            }
+        }
+        spliStringArray = tempArray;
+
+        for (int i=0; i<= spliStringArray.count-1; i++)
+        {
+            NSString * str=[spliStringArray objectAtIndex:i];
+            SearTagDict=[[NSMutableDictionary alloc]init];
+            
+            [SearTagDict setObject:str forKey:@"tag"];
+            [SearTagDict setObject:@"0" forKey:@"status"];
+            [SearTagDict setObject:@"0" forKey:@"rssi"];
+            [SearTagDict setObject:@"0" forKey:@"soundPlay"];
+            
+            [AddTagArray addObject:SearTagDict];
+        }
+        [_collectionView reloadData];
+    }
 }
 
 - (IBAction)clearClicked:(id)sender
 {
+    addItemClicked=NO;
+    isSoundPlayed=NO;
     
-    AddTagArray=nil;
-    [self.collectionView reloadData];
+    UIAlertController *alt=[UIAlertController alertControllerWithTitle:APP_NAME message:@"Confirm Clear !" preferredStyle:UIAlertControllerStyleAlert];
     
+    UIAlertAction* no = [UIAlertAction
+                         actionWithTitle:@"No"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alt dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    
+    UIAlertAction* yes = [UIAlertAction
+                          actionWithTitle:@"Yes"
+                          style:UIAlertActionStyleDefault
+                          handler:^(UIAlertAction * action)
+                          {
+                              [AddTagArray removeAllObjects];
+                              [self.collectionView reloadData];
+                          }];
+    
+    [alt addAction:no];
+    [alt addAction:yes];
+    
+    [self presentViewController:alt animated:YES completion:nil];
+    
+}
+
+#pragma mark - TSLInventoryCommandTransponderReceivedDelegate methods
+
+-(void)transponderReceived:(NSString *)epc crc:(NSNumber *)crc pc:(NSNumber *)pc rssi:(NSNumber *)rssi fastId:(NSData *)fastId moreAvailable:(BOOL)moreAvailable
+{
+    // Append the transponder EPC identifier and RSSI to the results
+    
+    NSData *epcdata=[TSLBinaryEncoding dataFromAsciiString:epc];
+    NSString * epcfinal=[TSLBinaryEncoding asciiStringFromData:epcdata];
+        
+    NSLog(@"%@",epcfinal);
+    
+    BOOL isTheObjectMatches = [spliStringArray containsObject:epcfinal];
+    
+    
+
+    if (isTheObjectMatches)
+    {
+        
+        NSUInteger indexOfTheObject = [spliStringArray indexOfObject:epcfinal];
+        
+        dicttObject = [AddTagArray objectAtIndex: indexOfTheObject];
+
+        [dicttObject setObject:@"1" forKey:@"status"];
+        
+        NSString * sound=[dicttObject valueForKey:@"soundPlay"];
+        
+        if ([sound isEqualToString:@"1"])
+        {
+            [self playSoundTwice];
+        }
+        else
+        {
+            [self playAudioOnce];
+        }
+        
+        NSString * str=[dicttObject valueForKey:@"tag"];
+        
+//        if (rssi==nil)
+//        {
+//            [dictt setObject:@"0" forKey:@"rssi"];
+//        }
+//        else
+//        {
+//            [dictt setObject:rssi forKey:@"rssi"];
+//        }
+//        NSLog(@"%@",dictt);
+        
+    }
+    else
+    {
+        NSLog(@"Scanned tag not matches");
+    }
+    
+}
+
+- (void)playAudioOnce
+{
+    [dicttObject setObject:@"1" forKey:@"soundPlay"];
+
+    [self playSound:@"beep-08b" :@"mp3"];
+}
+-(void)playSoundTwice
+{
+    [self playSound:@"beep-02" :@"wav"];
+
+}
+- (void)playSound :(NSString *)fName :(NSString *) ext
+{
+    SystemSoundID audioEffect;
+    NSString *path = [[NSBundle mainBundle] pathForResource : fName ofType :ext];
+    if ([[NSFileManager defaultManager] fileExistsAtPath : path])
+    {
+        NSURL *pathURL = [NSURL fileURLWithPath: path];
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef) pathURL, &audioEffect);
+        AudioServicesPlaySystemSound(audioEffect);
+    }
+    else
+    {
+        NSLog(@"error, file not found: %@", path);
+    }
+}
+
+#pragma mark - Helpers
+
+- (void)updateProgressView:(NSTimer *)timer
+{
+    NSInteger newCurrentValue;
+    SearchTagViewCell *cell;
+    
+    if (cell.progressview.currentValue == 0) {
+        newCurrentValue = cell.progressview.maximumValue;
+    } else {
+        newCurrentValue = cell.progressview.currentValue - 1;
+    }
+    
+    [cell.progressview updateToCurrentValue:newCurrentValue animated:YES];
+    return;
 }
 
 #pragma mark CollectionViewDelegate and CollectionviewDatasource
@@ -201,42 +436,22 @@
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     SearchTagViewCell * cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
-    cell.lblTagName.text=[AddTagArray objectAtIndex:indexPath.row];
+    NSDictionary * dict =[AddTagArray objectAtIndex:indexPath.row];
+    cell.lblTagName.text=[dict valueForKey:@"tag"];
+    NSString *str=[dict objectForKey:@"status"];
     
+    if ([str isEqualToString:@"1"])
+    {
+        cell.imgTick.image=[UIImage imageNamed:@"tick.png"];
+    }
+    else
+    {
+        cell.imgTick.image=[UIImage imageNamed:@"ti.png"];
+    }
     return cell;
 }
 
-
-#pragma mark - TSLInventoryCommandTransponderReceivedDelegate methods
-//
-// Each transponder received from the reader is passed to this method
-//
-// Parameters epc, crc, pc, and rssi may be nil
-//
-// Note: This is an asynchronous call from a separate thread
-//
--(void)transponderReceived:(NSString *)epc crc:(NSNumber *)crc pc:(NSNumber *)pc rssi:(NSNumber *)rssi fastId:(NSData *)fastId moreAvailable:(BOOL)moreAvailable
-{
-    // Append the transponder EPC identifier and RSSI to the results
-    
-    NSData *epcdata=[TSLBinaryEncoding dataFromAsciiString:epc];
-    NSString * epcfinal=[TSLBinaryEncoding asciiStringFromData:epcdata];
-    
-    [tagDict setObject:epcfinal forKey:@"srNumber"];
-    
-    [searchTagArray addObject:epcfinal];
-
-    _arrayCopy=[searchTagArray copy];
-    
-    NSSet *mySet = [NSSet setWithArray:_arrayCopy];
-    
-    _arrayCopy = [mySet allObjects];
-    
-    NSLog(@"%@",searchTagArray);
-    NSLog(@"%@",_arrayCopy);
-}
 
 @end

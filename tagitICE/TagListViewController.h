@@ -18,7 +18,9 @@
 }
 @property (strong) NSMutableArray *tags;
 
+@property(nonatomic,strong)NSMutableArray * T_ExtraArray;
+
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
-
+@property(strong ,nonatomic) NSString * getFunction;
 @end

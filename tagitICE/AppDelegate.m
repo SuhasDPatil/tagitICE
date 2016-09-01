@@ -11,6 +11,7 @@
 #import <TSLAsciiCommands/TSLLibraryConfiguration.h>
 #import "ConsignmentViewController.h"
 
+#import "StockCheckViewController.h"
 
 @interface AppDelegate ()
 
@@ -47,7 +48,9 @@
     [self setStatusBarBackgroundColor:[UIColor blackColor]];
     
     LoginViewController * lvc=[[LoginViewController alloc]init];
-
+    StockCheckViewController *scvc=[[StockCheckViewController alloc]init];
+    
+    
     UINavigationController * nav=[[UINavigationController alloc]initWithRootViewController:lvc];
     
     self.window.rootViewController=nav;
@@ -97,18 +100,10 @@
     // Saves changes in the application's managed object context before the application terminates.
     _commander=[SelectReaderInfo getSelectedReader];
     
-    EAAccessory *_currentAccessory;
-
-    if (_commander.isConnected)
-    {
-        NSLog(@"%@",_commander);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tagit Ice" message:@"Divice Disconnected" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil ];
-        [alert show];
-        
-        [_commander disconnect];
-    }
-
+    NSLog(@"%@",_commander);
     
+    [_commander permanentlyDisconnect];
+
     [self saveContext];
 }
 
@@ -133,33 +128,82 @@
     return _managedObjectModel;
 }
 
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-    // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it.
+//- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+//    // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it.
+//    if (_persistentStoreCoordinator != nil) {
+//        return _persistentStoreCoordinator;
+//    }
+//    
+//    // Create the coordinator and store
+//    
+//    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+//    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"tagitICE.sqlite"];
+//    NSError *error = nil;
+//    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
+//    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+//        // Report any error we got.
+//        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//        dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
+//        dict[NSLocalizedFailureReasonErrorKey] = failureReason;
+//        dict[NSUnderlyingErrorKey] = error;
+//        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
+//        // Replace this with code to handle the error appropriately.
+//        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//        abort();
+//    }
+//    
+//    return _persistentStoreCoordinator;
+//}
+
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
     
-    // Create the coordinator and store
-    
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"tagitICE.sqlite"];
+    
     NSError *error = nil;
-    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        // Report any error we got.
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
-        dict[NSLocalizedFailureReasonErrorKey] = failureReason;
-        dict[NSUnderlyingErrorKey] = error;
-        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
-        // Replace this with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    
+    NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption:@YES,
+                              NSInferMappingModelAutomaticallyOption:@YES,
+                              NSSQLitePragmasOption: @{@"journal_mode": @"WAL"}
+                              };
+    
+    // Check if we need a migration
+    NSDictionary *sourceMetadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:NSSQLiteStoreType URL:storeURL error:&error];
+    NSManagedObjectModel *destinationModel = [_persistentStoreCoordinator managedObjectModel];
+    BOOL isModelCompatible = (sourceMetadata == nil) || [destinationModel isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
+    if (! isModelCompatible) {
+        // We need a migration, so we set the journal_mode to DELETE
+        options = @{NSMigratePersistentStoresAutomaticallyOption:@YES,
+                    NSInferMappingModelAutomaticallyOption:@YES,
+                    NSSQLitePragmasOption: @{@"journal_mode": @"DELETE"}
+                    };
+    }
+    
+    NSPersistentStore *persistentStore = [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error];
+    if (! persistentStore) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
+    // Reinstate the WAL journal_mode
+    if (! isModelCompatible) {
+        [_persistentStoreCoordinator removePersistentStore:persistentStore error:NULL];
+        options = @{NSMigratePersistentStoresAutomaticallyOption:@YES,
+                    NSInferMappingModelAutomaticallyOption:@YES,
+                    NSSQLitePragmasOption: @{@"journal_mode": @"WAL"}
+                    };
+        [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error];
+    }
+    
+    
     return _persistentStoreCoordinator;
 }
+
 
 
 - (NSManagedObjectContext *)managedObjectContext {

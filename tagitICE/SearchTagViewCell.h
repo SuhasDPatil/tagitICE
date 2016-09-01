@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EAColourfulProgressView.h"
 
 @interface SearchTagViewCell : UICollectionViewCell
 
 
+@property (strong, nonatomic) IBOutlet EAColourfulProgressView *progressview;
 
 @property (strong, nonatomic) IBOutlet UILabel *lblTagName;
 

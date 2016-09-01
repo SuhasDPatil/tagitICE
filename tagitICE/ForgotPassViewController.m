@@ -226,7 +226,7 @@
         if (dict==0)
         {
             
-            alert = [[AMSmoothAlertView alloc]initFadeAlertWithTitle:APP_NAME andText:@"Username or Password doesn’t exist" andCancelButton:NO forAlertType:AlertFailure];
+            alert = [[AMSmoothAlertView alloc]initFadeAlertWithTitle:APP_NAME andText:@"Username or email doesn’t exist" andCancelButton:NO forAlertType:AlertFailure];
             [alert.defaultButton setTitle:@"Ok" forState:UIControlStateNormal];
             alert.cornerRadius = 3.0f;
             [alert show];
@@ -265,7 +265,6 @@
 -(void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
-
 }
 
 

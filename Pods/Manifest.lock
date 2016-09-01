@@ -2,7 +2,19 @@ PODS:
   - AFViewShaker (0.0.2)
   - AMSmoothAlert (1.1):
     - GPUImage
+  - GoogleAPIClient/Core (1.0.5):
+    - GTMSessionFetcher (~> 1.1)
+  - GoogleAPIClient/Drive (1.0.5):
+    - GoogleAPIClient/Core
+    - GTMSessionFetcher (~> 1.1)
   - GPUImage (0.1.7)
+  - GTMOAuth2 (1.1.2):
+    - GTMSessionFetcher (~> 1.1)
+  - GTMSessionFetcher (1.1.6):
+    - GTMSessionFetcher/Full (= 1.1.6)
+  - GTMSessionFetcher/Core (1.1.6)
+  - GTMSessionFetcher/Full (1.1.6):
+    - GTMSessionFetcher/Core (= 1.1.6)
   - IQKeyboardManager (4.0.3)
   - MBProgressHUD (0.9.2)
   - Toast (3.0)
@@ -10,6 +22,8 @@ PODS:
 DEPENDENCIES:
   - AFViewShaker (~> 0.0.2)
   - AMSmoothAlert (~> 1.0)
+  - GoogleAPIClient/Drive
+  - GTMOAuth2 (~> 1.1.0)
   - IQKeyboardManager
   - MBProgressHUD (~> 0.9.2)
   - Toast (~> 3.0)
@@ -17,11 +31,14 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFViewShaker: 7e4bc215ca3e92347b78da436fca74e1730b52e8
   AMSmoothAlert: 108cf0fc3eea9256ccfdcd9deaa283999ac1e47e
+  GoogleAPIClient: 4a6b0b807de8b1115a2835180b25dd93dc60f1ea
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  GTMOAuth2: 1707e2f7fe3a6d7240223c23c473ba5a2d104474
+  GTMSessionFetcher: 6aacd0ab48ddf0c3633ab2642d792abfcad1b08a
   IQKeyboardManager: be9695ffc5a52077deb4847608f338771022d6d1
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   Toast: 32c59229abfcf41850162b83bb9259dc84372473
 
-PODFILE CHECKSUM: f3f45df5402ed8e1435450fd302690691a39278e
+PODFILE CHECKSUM: 2e2f13feacf98c30639fc1049b633d831c0c01b9
 
 COCOAPODS: 1.0.1

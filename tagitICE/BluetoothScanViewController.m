@@ -1,4 +1,4 @@
- //
+//
 //  BluetoothScanViewController.m
 //  tagitICE
 //
@@ -24,7 +24,7 @@
     MBProgressHUD *_hud;
     int _transpondersSeen;
     NSString *_partialResultMessage;
-
+    
 }
 
 @end
@@ -35,14 +35,14 @@
 {
     [super viewDidLoad];
     
-
+    
     //New Methods
     
     // Listen for accessory connect/disconnects
     [[EAAccessoryManager sharedAccessoryManager] registerForLocalNotifications];
     
     _accessoryList = [[EAAccessoryManager sharedAccessoryManager] connectedAccessories];
-
+    
     _selectedRow = 0;
     
     
@@ -67,11 +67,11 @@
     
     [self setStatusBarBackgroundColor:[UIColor blackColor]];
     self.title=@"Tagit ICE";
-
+    
     [[self.btnScan layer] setBorderWidth:5.0f];
     [[self.btnScan layer] setBorderColor:[UIColor clearColor].CGColor];
     [[self.btnScan layer]setCornerRadius:4.5f];
-
+    
     [[self.viewBorder1 layer] setBorderWidth:5.0f];
     [[self.viewBorder1 layer] setBorderColor:[UIColor clearColor].CGColor];
     [[self.viewBorder1 layer]setCornerRadius:4.5f];
@@ -127,22 +127,23 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
 - (IBAction)scanClicked:(id)sender
 {
     // start scanning button
+    [_btnScan setTitle:@"SCANNING..." forState:UIControlStateNormal];
     
     _accessoryList = [[EAAccessoryManager sharedAccessoryManager] connectedAccessories];
-
+    
     
     [[EAAccessoryManager sharedAccessoryManager] showBluetoothAccessoryPickerWithNameFilter:nil completion:^(NSError *error)
      {
@@ -153,6 +154,7 @@
              // Inform the user that the device is being connected
              //             _hud = [TSLProgressHUD updateHUD:_hud inView:self.view forBusyState:YES withMessage:@"Waiting for device..."];
              NSLog(@"Device Connected %@",[[EAAccessoryManager sharedAccessoryManager]connectedAccessories]);
+             
              
          }
          else
@@ -187,7 +189,11 @@
                  [alert show];
              }
          }
+         
+         [_btnScan setTitle:@"SCAN FOR BLUETOOTH DEVICES" forState:UIControlStateNormal];
+         
      }];
+    
 }
 
 
@@ -208,12 +214,12 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ScanViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-
+    
     cell.layoutMargins = UIEdgeInsetsZero;
     
     if( _accessoryList.count == 0 )
     {
-  
+        
         
         nomatchesView = [[UIView alloc] initWithFrame:self.view.frame];
         nomatchesView.backgroundColor = [UIColor clearColor];
@@ -249,7 +255,7 @@
         _tableView.hidden = YES;
         [nomatchesView addSubview:matchesLabel];
         [self.view insertSubview:nomatchesView aboveSubview:self.tableView];
-
+        
         
     }
     else if( indexPath.row >= 0 )
@@ -258,10 +264,10 @@
         _tableView.hidden=NO;
         EAAccessory * accessory = [_accessoryList objectAtIndex:indexPath.row];
         cell.lblDeviceName.text=accessory.serialNumber;
-//        cell.lblDeviceNumber.text=[NSString stringWithFormat:@"FW: v%@    HW: v%@", accessory.firmwareRevision, accessory.hardwareRevision];
+        //        cell.lblDeviceNumber.text=[NSString stringWithFormat:@"FW: v%@    HW: v%@", accessory.firmwareRevision, accessory.hardwareRevision];
         
         cell.lblDeviceNumber.text=[NSString stringWithFormat:@"%d", (int)accessory.connectionID];
-
+        
         if (accessory.isConnected==YES)
         {
             cell.lblPaired.text=@"paired";
@@ -271,24 +277,24 @@
             cell.lblPaired.text=@"New";
         }
         NSLog(@"Accessory Details : %@", accessory);
-
+        
     }
     
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    _hud.labelText = @"Connecting...";
-//    [_hud show:YES];
-
+    //    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //    _hud.labelText = @"Connecting...";
+    //    [_hud show:YES];
+    
     
     
     _hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    _hud.labelText=@"Connecting...";
+    _hud.labelText=@"Pairing with Device";
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // Do something...
-
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             
             // Connect to the chosen TSL Reader
@@ -332,12 +338,14 @@
                 
                 alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Connected !" andText:@"Connected to RFID Reader !" andCancelButton:NO forAlertType:AlertSuccess];
                 [alert.defaultButton setTitle:@"Ok" forState:UIControlStateNormal];
+                
                 alert.completionBlock = ^void (AMSmoothAlertView *alertObj, UIButton *button) {
                     if(button == alertObj.defaultButton) {
-
-                        MainVC * mvc=[[MainVC alloc]init];
-                        [self.navigationController pushViewController:mvc animated:YES];
-
+                        
+                        LoadStockViewController *lsvc=[[LoadStockViewController alloc]init];
+                        
+                        [self.navigationController pushViewController:lsvc animated:YES];
+                        
                         
                     } else {
                         NSLog(@"Others");
@@ -355,14 +363,14 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
     });
-
+    
 }
 
 -(void)didSelectReaderForRow:(NSInteger)row
 {
-
+    
     // Disconnect from the current reader, if any
-//    [_commander disconnect];
+    //    [_commander disconnect];
     
     
 }
@@ -405,7 +413,6 @@
     // Update the 'select reader' button
     if( !_commander.isConnected )
     {
-        NSLog(@"**********************************************");
     }
 }
 
@@ -418,7 +425,7 @@
     
     UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, -app.statusBarFrame.size.height, self.view.bounds.size.width, app.statusBarFrame.size.height)];
     statusBarView.backgroundColor = [UIColor blackColor];
-
+    
     if([UIScreen mainScreen].bounds.size.width>=700)
     {
         self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:203.0f/255.0f green:32.0f/255.0f blue:45.0f/255.0f alpha:1.0];
@@ -446,7 +453,7 @@
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *backBtnImage = [UIImage imageNamed:@"b"]  ;
     [backBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
-//    [backBtn addTarget:self action:@selector(goback) forControlEvents:UIControlEventTouchUpInside];
+    //    [backBtn addTarget:self action:@selector(goback) forControlEvents:UIControlEventTouchUpInside];
     backBtn.frame = CGRectMake(0, 0, 10, 16);
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn] ;
     self.navigationItem.leftBarButtonItem = backButton;

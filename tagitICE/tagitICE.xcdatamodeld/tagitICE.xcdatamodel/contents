@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15D21" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15F34" minimumToolsVersion="Automatic">
+    <entity name="StockFile" representedClassName="StockFile" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dia_Wt" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="gold_Oth_Wt" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="gross_Wt" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="img_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_Code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_Description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemType_Name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location_Name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="menu" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="net_Wt" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="qty" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="st_Wt" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="tag_Price" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+    </entity>
     <entity name="Tags" representedClassName="Tags" syncable="YES">
         <attribute name="quantity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="srNumber" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="TagsSC" representedClassName="TagsSC" syncable="YES">
+        <attribute name="quantity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scanDateTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="srNumber" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Tags" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="StockFile" positionX="-279" positionY="-42" width="128" height="255"/>
+        <element name="Tags" positionX="-126" positionY="-3" width="128" height="75"/>
+        <element name="TagsSC" positionX="-126" positionY="87" width="128" height="90"/>
     </elements>
 </model>

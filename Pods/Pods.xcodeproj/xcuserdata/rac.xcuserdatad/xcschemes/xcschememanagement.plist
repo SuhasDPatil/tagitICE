@@ -19,6 +19,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>GTMOAuth2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GTMSessionFetcher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GoogleAPIClient.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IQKeyboardManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +57,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>11697EE83B0D4FC45A96E2E914EC76AF</key>
+		<key>1795E48A6FD444CC4707EB9D483B1DB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,12 +67,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>3EC508E2AD93A8B7862551E8450FF1A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>499E02707080D83C86D4029D60C38866</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>50A464FA4AEC10C0269F526120639C75</key>
+		<key>5EA57E2660CA380025E05E4ECD88F972</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>896988FFB78000C9501B9407FC6970DD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -68,6 +93,11 @@
 			<true/>
 		</dict>
 		<key>DE93392C80D45AE8768EDBA0C493C1A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F2B93FCDC5A48365F4E48AFB7DE1735B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

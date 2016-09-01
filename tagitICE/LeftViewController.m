@@ -11,7 +11,6 @@
 
 
 
-
 @interface LeftViewController ()
 
 @end
@@ -37,10 +36,8 @@
     
     [self setStatusBarBackgroundColor:[UIColor blackColor]];
     
-  //  self.tabledata = [@[@"Search",@"About Us",@"Invite Friends"] mutableCopy];
-
     
-    self.tabledata = [@[@"CONSIGNMENT",@"SEARCH",@"STOCK TRANSFER",@"SETTINGS"] mutableCopy];
+    self.tabledata = [@[@"STOCK CHECK",@"CONSIGNMENT",@"SEARCH",@"QUOTATION",@"SETTINGS"] mutableCopy];
     
     
     [self.tableView registerNib:[UINib nibWithNibName:@"LeftMenuViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
@@ -90,10 +87,10 @@
     return 130.0;
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"slide_company_logo.png"]];
-//}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logof.png"]];
+}
 
 - (NSIndexPath *)initialIndexPathForLeftMenu
 {
@@ -107,27 +104,16 @@
     
     switch (indexPath.row)
     {
-//        case 0:
-//        {
-//            NSLog(@"Stock Check Controller");
-//            
-//            UIAlertController *alt=[UIAlertController alertControllerWithTitle:APP_NAME message:@"Coming Soon" preferredStyle:UIAlertControllerStyleAlert];
-//            UIAlertAction* ok = [UIAlertAction
-//                                 actionWithTitle:@"OK"
-//                                 style:UIAlertActionStyleDefault
-//                                 handler:^(UIAlertAction * action)
-//                                 {
-//                                     [alt dismissViewControllerAnimated:YES completion:nil];
-//                                     
-//                                 }];
-//            [alt addAction:ok];
-//            [self presentViewController:alt animated:YES completion:nil];
-//
-//            rootVC=[[StockCheckViewController alloc]initWithNibName:@"StockCheckViewController" bundle:nil];
-//        }
-//            break;
-
         case 0:
+        {
+            NSLog(@"Stock Check Controller");
+            rootVC=[[StockCheckViewController alloc]initWithNibName:@"StockCheckViewController" bundle:nil];
+            rootVC.title=@"Stock Check";
+
+        }
+            break;
+
+        case 1:
         {
             NSLog(@"Consignment View Controller");
             rootVC=[[ConsignmentViewController alloc]initWithNibName:@"ConsignmentViewController" bundle:nil];
@@ -135,25 +121,25 @@
         }
             break;
             
-        case 1:
+        case 2:
         {
             NSLog(@"Search View Controller");
             rootVC=[[SearchViewController alloc]initWithNibName:@"SearchViewController" bundle:nil];
         }
             break;
             
-        case 2:
+        case 3:
         {
-            NSLog(@"Stock Transferr");
-            rootVC=[[StockCheckViewController alloc]initWithNibName:@"StockCheckViewController" bundle:nil];
-            rootVC.title=@"Stock Transfer";
+            NSLog(@"Quotation");
+            rootVC=[[QuotationHomeViewController alloc]initWithNibName:@"QuotationHomeViewController" bundle:nil];
+            rootVC.title=@"Quotation";
 
         }
             break;
-        case 3:
+        case 4:
         {
             NSLog(@"Settings View Controller");
-            rootVC=[[StockCheckViewController alloc]initWithNibName:@"StockCheckViewController" bundle:nil];
+            rootVC=[[QuotationHomeViewController alloc]initWithNibName:@"QuotationHomeViewController" bundle:nil];
             rootVC.title=@"Settings";
 
         }
